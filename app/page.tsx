@@ -1,10 +1,22 @@
+import { AboutSection } from "@/app/components/home/about-section";
+import { BrandSection } from "@/app/components/home/brand-section";
+import { CtaSection } from "@/app/components/home/cta-section";
+import { FeaturedProjects } from "@/app/components/home/featured-projects";
+import { Footer } from "@/app/components/home/footer";
+import { HeroSection } from "@/app/components/home/hero-section";
+import { Navbar } from "@/app/components/home/navbar";
+import { navLinks } from "@/app/data/home-content";
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-white text-black">
-      <div className="text-center">
-        <h1 className="text-5xl font-bold">Hello World</h1>
-        <p className="mt-4 text-lg">This is Zahoor Ahmed&apos; Welcome to ZahoorAhmed.com.</p>
-      </div>
+    <main className="relative overflow-x-clip">
+      <Navbar links={navLinks} />
+      <HeroSection />
+      <BrandSection />
+      <AboutSection />
+      <FeaturedProjects />
+      <CtaSection />
+      <Footer />
     </main>
   );
 }

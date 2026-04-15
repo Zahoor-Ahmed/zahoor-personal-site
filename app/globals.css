@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f8fb;
+  --foreground: #0f172a;
+  --surface: rgba(255, 255, 255, 0.82);
+  --border: rgba(148, 163, 184, 0.18);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-border-subtle: var(--border);
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #f6f8fb;
 }
 
 body {
-  background: var(--background);
+  background: #f6f8fb;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+@keyframes fade-up-soft {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 18px 28px rgba(56, 189, 248, 0.12));
+  }
+  50% {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 22px 36px rgba(59, 130, 246, 0.18));
+  }
+}
+
+@utility animate-fade-up-soft {
+  animation: fade-up-soft 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-glow-float {
+  animation: glow-float 5s ease-in-out infinite;
+}
+
+@utility animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+@utility animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+@utility animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+@utility animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(14, 165, 233, 0.18);
+  color: #020617;
 }
