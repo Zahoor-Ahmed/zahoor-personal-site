@@ -20,7 +20,7 @@ export function Navbar({ links }: NavbarProps) {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-0.5">
         <Link
           href="/"
-          className="ml-[70px] text-sm font-bold uppercase tracking-[0.3em] text-slate-950"
+          className="ml-[70px] text-sm font-semibold uppercase tracking-[0.26em] text-slate-950"
         >
           Zahoor Ahmed
         </Link>
