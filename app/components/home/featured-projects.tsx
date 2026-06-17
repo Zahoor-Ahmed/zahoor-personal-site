@@ -1,32 +1,36 @@
 import { featuredProjects } from "@/app/data/home-content";
 import { SectionHeading } from "@/app/components/home/section-heading";
+import { homeSectionPaddingX } from "@/app/components/home/section-layout";
 
 export function FeaturedProjects() {
   return (
-    <section id="projects" className="px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-12 animate-fade-up-soft animation-delay-300">
+    <section id="projects" className={homeSectionPaddingX}>
+      <div className="mx-auto max-w-6xl space-y-10 animate-fade-up-soft animation-delay-300">
         <SectionHeading
           eyebrow="Featured Projects"
-          title="Selected work shaped around practical AI, analytics, and product thinking"
-          description="These highlights reflect the kind of systems and experiences I’m interested in building: useful, grounded, and designed to support real work."
+          eyebrowSizeClassName="text-[0.95rem] sm:text-base"
+          eyebrowClassName="font-bold tracking-[0.28em] text-sky-600"
+          title="Practical work across AI, automation, and analytics"
+          description="A selection of products, workflows, and data systems I'm building or have worked on, focused on usefulness, execution, and real-world decision support."
+          descriptionClassName="max-w-2xl text-base leading-7 text-slate-700"
         />
 
         <div className="grid gap-6 lg:grid-cols-3">
           {featuredProjects.map((project, index) => (
             <article
               key={project.title}
-              className="group flex h-full flex-col rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(248,250,252,0.94))] p-6 shadow-[0_18px_48px_rgba(15,23,42,0.05)] ring-1 ring-slate-200/60 transition hover:-translate-y-1 hover:shadow-[0_30px_72px_rgba(56,189,248,0.12)]"
+              className="flex h-full flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6"
             >
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sky-700/75">
+              <div className="flex items-start justify-between gap-3">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-sky-600 sm:text-sm">
                   {project.eyebrow}
                 </p>
-                <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-800/80">
+                <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
                   0{index + 1}
                 </span>
               </div>
 
-              <h3 className="mt-8 text-2xl font-semibold tracking-tight text-slate-950 transition group-hover:text-sky-800">
+              <h3 className="mt-6 text-xl font-bold tracking-tight text-slate-950 sm:text-2xl">
                 {project.title}
               </h3>
               <p className="mt-4 flex-1 text-sm leading-7 text-slate-600">
@@ -37,12 +41,19 @@ export function FeaturedProjects() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-slate-200/90 bg-white/80 px-3 py-1 text-xs font-medium text-slate-600"
+                    className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
+
+              <a
+                href={project.href}
+                className="mt-6 inline-flex items-center text-sm font-semibold text-sky-600 transition hover:text-sky-700"
+              >
+                View project →
+              </a>
             </article>
           ))}
         </div>

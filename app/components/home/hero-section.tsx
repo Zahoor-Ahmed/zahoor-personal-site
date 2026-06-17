@@ -1,8 +1,10 @@
 import Image from "next/image";
 
+import { homeSectionPaddingX } from "@/app/components/home/section-layout";
+
 export function HeroSection() {
   return (
-    <section id="top" className="px-4 pb-6 pt-0 sm:px-6 sm:pb-8 lg:px-8">
+    <section id="top" className={homeSectionPaddingX}>
       <div className="mx-auto max-w-6xl animate-fade-up-soft">
         <div className="rounded-[2.25rem] bg-white px-6 py-[28px] sm:px-8 lg:px-10">
           <div className="grid gap-5">
@@ -15,8 +17,8 @@ export function HeroSection() {
                   </p>
                 </div>
                 <div className="max-w-xl space-y-0.5 pl-9 text-sm leading-[1.7] text-slate-900 sm:text-[0.98rem]">
-                  <p>Entrepreneur in AI, data, and digital products</p>
-                  <p>Turning ideas into practical systems and ventures</p>
+                  <p>Building practical AI, data, and automation systems</p>
+                  <p>Turning ideas into useful products, workflows, and ventures</p>
                 </div>
               </div>
             </div>

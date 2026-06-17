@@ -11,56 +11,82 @@ export const heroHighlights = [
   "AI Training",
 ] as const;
 
-export const credibilityPoints = [
-  {
-    label: "Base",
-    value: "Islamabad, Pakistan",
-  },
+export const aboutIntro = {
+  title: "From telecom data to practical AI systems",
+  paragraphs: [
+    "My background is in data analytics, reporting, and telecom customer experience, where the work was about turning complex information into clearer decisions.",
+    "Now I'm applying that same practical mindset to AI products, automation workflows, and intelligence systems that support real business execution.",
+  ],
+} as const;
+
+export const aboutHighlights = [
   {
     label: "Focus",
-    value: "AI systems, automation, analytics",
+    value: "AI systems, automation, analytics, and telecom intelligence",
   },
   {
-    label: "Positioning",
-    value: "Technical builder with a practical product lens",
+    label: "Approach",
+    value: "Practical product thinking with hands-on implementation",
   },
 ] as const;
 
 export const aboutPillars = [
-  "Building practical AI products, experiments, and internal tools",
-  "Translating messy business processes into cleaner automated systems",
-  "Combining analytics, UX thinking, and implementation into one workflow",
+  "Data analytics and reporting experience",
+  "Telecom customer experience background",
+  "Ability to turn messy workflows into cleaner systems",
+  "Growing focus on AI for telecom and customer intelligence",
 ] as const;
 
-export const brandSignals = [
-  "Personal brand built around execution, not vague positioning",
-  "A home for ongoing projects, experiments, and proof of work",
-  "Designed to attract clients, collaborators, and product opportunities",
+export const buildAreas = [
+  {
+    title: "AI Products",
+    description:
+      "Focused tools and assistants built around real use cases, user needs, and practical workflows.",
+  },
+  {
+    title: "Automation Systems",
+    description:
+      "Processes that reduce repetitive work, improve consistency, and turn manual tasks into reliable workflows.",
+  },
+  {
+    title: "Analytics & Telecom",
+    description:
+      "Decision systems built from real data, focused on insights, customer experience, and telecom performance.",
+  },
 ] as const;
 
 export const featuredProjects = [
   {
-    title: "UrduPro",
-    eyebrow: "Language product concept",
+    title: "EZ Leads",
+    eyebrow: "AI Sales System",
     description:
-      "A product direction focused on making Urdu writing and communication more useful, professional, and accessible through AI-assisted workflows.",
-    tags: ["AI product", "Language UX", "Workflow design"],
+      "An AI-assisted WhatsApp lead management system designed to help businesses capture, understand, and follow up with leads faster.",
+    tags: ["WhatsApp", "AI CRM", "Firebase"],
+    href: "#",
   },
   {
-    title: "Automation Workflows",
-    eyebrow: "Operations and delivery",
+    title: "Business Process Automation",
+    eyebrow: "Automation Workflows",
     description:
-      "Repeatable automations for content, reporting, and business tasks that reduce manual effort and turn fragmented processes into reliable systems.",
+      "Repeatable workflows for reporting, content, follow-ups, and business tasks that reduce manual effort and improve consistency.",
     tags: ["Python", "APIs", "Automation"],
+    href: "#",
   },
   {
     title: "Analytics Dashboards",
-    eyebrow: "Decision support",
+    eyebrow: "Data & Telecom Analytics",
     description:
-      "Data work designed to help teams move from raw numbers to clearer decisions using SQL, reporting logic, and useful presentation layers.",
-    tags: ["SQL", "Analytics", "Decision support"],
+      "Decision-support dashboards built from complex data, focused on KPIs, customer experience, telecom insights, and clearer reporting.",
+    tags: ["SQL", "Analytics", "Telecom"],
+    href: "#",
   },
 ] as const;
+
+export const ctaContent = {
+  title: "Looking to turn an idea or workflow into a working system",
+  description:
+    "I'm open to selected collaborations around AI products, automation workflows, analytics systems, and telecom-focused intelligence.",
+} as const;
 
 export const ctaLinks = [
   {
