@@ -1,5 +1,5 @@
 import { ctaContent, ctaLinks } from "@/app/data/home-content";
-import { homeSectionPaddingX } from "@/app/components/home/section-layout";
+import { homeSectionPaddingX, homeSectionMaxWidth, sectionDarkBodyText } from "@/app/components/home/section-layout";
 
 function EnvelopeIcon({ className }: { className?: string }) {
   return (
@@ -59,7 +59,7 @@ function ContactGraphic() {
 export function CtaSection() {
   return (
     <section id="contact" className={homeSectionPaddingX}>
-      <div className="mx-auto max-w-6xl animate-fade-up-soft animation-delay-400">
+      <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-400`}>
         <div className="relative overflow-hidden rounded-[2.5rem] border border-slate-800/80 bg-[linear-gradient(135deg,#070b14_0%,#0f172a_42%,#1e3a8a_100%)] px-6 py-10 text-white shadow-[0_30px_100px_rgba(15,23,42,0.18)] sm:px-10 sm:py-12">
           <div className="pointer-events-none absolute -right-10 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-blue-500/20 blur-3xl" />
 
@@ -77,7 +77,7 @@ export function CtaSection() {
                 <span className="text-sky-400">?</span>
               </h2>
 
-              <p className="max-w-xl text-base leading-7 text-slate-300 sm:text-lg">
+              <p className={`max-w-xl ${sectionDarkBodyText}`}>
                 {ctaContent.description}
               </p>
             </div>

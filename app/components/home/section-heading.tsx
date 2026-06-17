@@ -17,7 +17,7 @@ export function SectionHeading({
   eyebrowClassName = "text-slate-500",
   eyebrowSizeClassName = "text-sm",
   showEyebrowAccent = false,
-  descriptionClassName = "text-base leading-7 text-slate-600 sm:text-lg",
+  descriptionClassName = "text-lg leading-8 text-slate-600 sm:text-xl",
 }: SectionHeadingProps) {
   const paragraphs = descriptions ?? (description ? [description] : []);
 

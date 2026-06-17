@@ -1,6 +1,6 @@
 import { buildAreas } from "@/app/data/home-content";
 import { SectionHeading } from "@/app/components/home/section-heading";
-import { homeSectionPaddingX, sectionCardShadow, sectionCardSurface, sectionCardInnerSurface } from "@/app/components/home/section-layout";
+import { homeSectionPaddingX, homeSectionMaxWidth, sectionCardShadow, sectionCardSurface, sectionCardInnerSurface, sectionIntroText, sectionCardText } from "@/app/components/home/section-layout";
 import { BuildAreaIcon } from "@/app/components/home/visuals/build-area-icon";
 
 function CardArcDecoration() {
@@ -16,7 +16,7 @@ function CardArcDecoration() {
 export function BrandSection() {
   return (
     <section className={homeSectionPaddingX}>
-      <div className="mx-auto max-w-6xl animate-fade-up-soft animation-delay-100">
+      <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-100`}>
         <div className={`relative grid gap-8 rounded-[2.25rem] px-6 py-8 ${sectionCardSurface} ${sectionCardShadow} sm:px-8 sm:py-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:px-10`}>
           <SectionHeading
             eyebrow="What I Build"
@@ -25,7 +25,7 @@ export function BrandSection() {
             showEyebrowAccent
             title="Practical AI, data, and automation systems"
             description="I build useful digital systems that help people reduce manual work, make clearer decisions, and move ideas from concept to execution. My long-term direction is applying this work at the intersection of AI, analytics, and telecom systems."
-            descriptionClassName="text-base leading-7 text-slate-700"
+            descriptionClassName={sectionIntroText}
           />
 
           <div className="relative grid gap-4 sm:grid-cols-3">
@@ -47,7 +47,7 @@ export function BrandSection() {
                   {area.title}
                 </h3>
                 <span className="relative mt-2 block h-0.5 w-10 rounded-full bg-[var(--brand-accent-line)]" />
-                <p className="relative mt-3 text-sm leading-7 text-slate-600">
+                <p className={`relative mt-3 ${sectionCardText}`}>
                   {area.description}
                 </p>
               </div>

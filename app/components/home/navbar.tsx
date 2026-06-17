@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { homeSectionMaxWidth } from "@/app/components/home/section-layout";
+
 type NavLink = {
   label: string;
   href: string;
@@ -17,7 +19,7 @@ export function Navbar({ links }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-300/50 bg-[color-mix(in_srgb,var(--background)_88%,white)]/90 px-4 py-2 backdrop-blur-md sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-0.5">
+      <div className={`mx-auto flex ${homeSectionMaxWidth} items-center justify-between px-4 py-0.5`}>
         <Link
           href="/"
           className="ml-[70px] text-sm font-semibold uppercase tracking-[0.26em] text-slate-950"
@@ -59,7 +61,7 @@ export function Navbar({ links }: NavbarProps) {
       </div>
 
       {isOpen ? (
-        <div className="mx-auto mt-3 max-w-6xl border border-slate-200 bg-white p-4 shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:hidden">
+        <div className={`mx-auto mt-3 ${homeSectionMaxWidth} border border-slate-200 bg-white p-4 shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:hidden`}>
           <nav className="flex flex-col gap-2">
             <a
               href="#top"

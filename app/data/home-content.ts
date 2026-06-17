@@ -21,6 +21,7 @@ export const heroContent = {
   description:
     "I'm building at the intersection of AI, data, automation, and digital products. My focus is not just on ideas, but on turning them into practical systems, meaningful ventures, and work that creates real value.",
   profileImage: {
+    /** Change `src` to swap photo — files live in /public (e.g. zahoor-profile-r2.png) */
     classic: {
       src: "/zahoor-profile-r1.png",
       alt: "Portrait of Zahoor Ahmed",
@@ -42,6 +43,30 @@ export const heroContent = {
       icon: "mail",
     },
   ],
+} as const;
+
+/** Copy used only by the dark showcase hero (classic hero uses heroContent above) */
+export const heroShowcaseContent = {
+  taglines: [
+    {
+      icon: "chip" as const,
+      text: "Business workflows into AI systems",
+    },
+    {
+      icon: "rocket" as const,
+      text: "Practical automation for real execution",
+    },
+  ],
+  headline: {
+    before: "AI systems that create ",
+    accent: "value",
+  },
+  description:
+    "I design practical AI and automation solutions that help businesses move faster, work smarter, and execute better.",
+  valueOverlay: {
+    lead: "Practical systems.",
+    highlight: "Real business value.",
+  },
 } as const;
 
 export const heroHighlights = [

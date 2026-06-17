@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { SectionHeading } from "@/app/components/home/section-heading";
+import { sectionIntroText } from "@/app/components/home/section-layout";
 
 type AboutIntroProps = {
   eyebrow: string;
@@ -27,7 +28,7 @@ export function AboutIntro({
         eyebrowClassName="font-bold tracking-[0.28em] text-sky-600"
         title={title}
         descriptions={paragraphs}
-        descriptionClassName="text-base leading-7 text-slate-700"
+        descriptionClassName={sectionIntroText}
       />
 
       {isExpanded ? (
@@ -35,7 +36,7 @@ export function AboutIntro({
           {readMoreParagraphs.map((paragraph) => (
             <p
               key={paragraph}
-              className="text-base leading-7 text-slate-700"
+              className={sectionIntroText}
             >
               {paragraph}
             </p>

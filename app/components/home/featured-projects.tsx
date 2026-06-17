@@ -1,19 +1,19 @@
 import { featuredProjects } from "@/app/data/home-content";
 import { SectionHeading } from "@/app/components/home/section-heading";
-import { homeSectionPaddingX, sectionCardShadow, sectionCardSurface } from "@/app/components/home/section-layout";
+import { homeSectionPaddingX, homeSectionMaxWidth, sectionCardShadow, sectionCardSurface, sectionIntroText, sectionCardText } from "@/app/components/home/section-layout";
 import { ProjectVisual } from "@/app/components/home/visuals/project-visual";
 
 export function FeaturedProjects() {
   return (
     <section id="projects" className={homeSectionPaddingX}>
-      <div className="mx-auto max-w-6xl space-y-10 animate-fade-up-soft animation-delay-300">
+      <div className={`mx-auto ${homeSectionMaxWidth} space-y-10 animate-fade-up-soft animation-delay-300`}>
         <SectionHeading
           eyebrow="Featured Projects"
           eyebrowSizeClassName="text-[0.95rem] sm:text-base"
           eyebrowClassName="font-bold tracking-[0.28em] text-sky-600"
           title="Practical work across AI, automation, and analytics"
           description="A selection of products, workflows, and data systems I'm building or have worked on, focused on usefulness, execution, and real-world decision support."
-          descriptionClassName="max-w-2xl text-base leading-7 text-slate-700"
+          descriptionClassName={`max-w-2xl ${sectionIntroText}`}
         />
 
         <div className="grid gap-6 lg:grid-cols-3">
@@ -39,7 +39,7 @@ export function FeaturedProjects() {
                 <h3 className="mt-5 text-xl font-bold tracking-tight text-slate-950 sm:text-2xl">
                   {project.title}
                 </h3>
-                <p className="mt-4 flex-1 text-sm leading-7 text-slate-600">
+                <p className={`mt-4 flex-1 ${sectionCardText}`}>
                   {project.description}
                 </p>
 

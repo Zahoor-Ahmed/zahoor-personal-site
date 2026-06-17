@@ -28,7 +28,9 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full font-sans text-slate-950">{children}</body>
+      <body className="min-h-full font-sans text-slate-950">
+        <div className="site-scale">{children}</div>
+      </body>
     </html>
   );
 }

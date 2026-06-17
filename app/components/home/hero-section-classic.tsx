@@ -1,14 +1,14 @@
 import Image from "next/image";
 
 import { heroContent } from "@/app/data/home-content";
-import { homeSectionPaddingX, sectionCardShadow } from "@/app/components/home/section-layout";
+import { homeSectionPaddingX, homeSectionMaxWidth, sectionCardShadow } from "@/app/components/home/section-layout";
 
 export function HeroSectionClassic() {
   const profile = heroContent.profileImage.classic;
 
   return (
     <section id="top" className={`relative ${homeSectionPaddingX}`}>
-      <div className="relative mx-auto max-w-6xl animate-fade-up-soft">
+      <div className={`relative mx-auto ${homeSectionMaxWidth} animate-fade-up-soft`}>
         <div
           className={`hero-card overflow-hidden rounded-[2.25rem] px-6 py-[28px] ${sectionCardShadow} sm:px-8 lg:px-10`}
         >
@@ -31,6 +31,7 @@ export function HeroSectionClassic() {
               <div className="relative mx-auto w-full max-w-[20rem] lg:mx-0 lg:justify-self-center xl:max-w-[22rem]">
                 <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white bg-[#d5d5d5] shadow-[0_18px_36px_rgba(15,23,42,0.10)]">
                   <Image
+                    key={profile.src}
                     src={profile.src}
                     alt={profile.alt}
                     fill
