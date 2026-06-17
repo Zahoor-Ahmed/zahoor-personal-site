@@ -4,9 +4,17 @@ import { homeSectionPaddingX } from "@/app/components/home/section-layout";
 
 export function HeroSection() {
   return (
-    <section id="top" className={homeSectionPaddingX}>
-      <div className="mx-auto max-w-6xl animate-fade-up-soft">
-        <div className="rounded-[2.25rem] bg-white px-6 py-[28px] sm:px-8 lg:px-10">
+    <section id="top" className={`relative ${homeSectionPaddingX}`}>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-4 top-6 bottom-0 mx-auto max-w-6xl sm:inset-x-6 lg:inset-x-8"
+      >
+        <div className="absolute top-[10%] left-[6%] h-44 w-44 rounded-full bg-blue-500/10 blur-3xl sm:h-52 sm:w-52" />
+        <div className="absolute top-[18%] right-[8%] h-48 w-48 rounded-full bg-[#a87908]/10 blur-3xl sm:h-56 sm:w-56" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl animate-fade-up-soft">
+        <div className="rounded-[2.25rem] bg-white px-6 py-[28px] shadow-[0_20px_60px_rgba(15,23,42,0.04)] sm:px-8 lg:px-10">
           <div className="grid gap-5">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div className="space-y-3">

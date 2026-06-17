@@ -5,6 +5,18 @@
   --foreground: #0f172a;
   --surface: rgba(255, 255, 255, 0.82);
   --border: rgba(148, 163, 184, 0.18);
+  --page-gradient:
+    radial-gradient(
+      ellipse 80% 50% at 18% 0%,
+      rgba(37, 99, 235, 0.07),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 42% at 92% 18%,
+      rgba(168, 121, 8, 0.05),
+      transparent 72%
+    ),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
 @theme inline {
@@ -21,11 +33,13 @@
 }
 
 html {
-  background: #f6f8fb;
+  min-height: 100%;
+  background: var(--page-gradient);
 }
 
 body {
-  background: #f6f8fb;
+  min-height: 100%;
+  background: transparent;
   color: var(--foreground);
   font-family: var(--font-plus-jakarta-sans), sans-serif;
   text-rendering: optimizeLegibility;

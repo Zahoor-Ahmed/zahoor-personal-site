@@ -16,7 +16,7 @@ export function Navbar({ links }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#f6f8fb] px-4 py-2 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-white/40 bg-[#f8fafc]/75 px-4 py-2 backdrop-blur-md sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-0.5">
         <Link
           href="/"
