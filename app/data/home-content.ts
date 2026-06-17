@@ -4,6 +4,46 @@ export const navLinks = [
   { label: "Contact", href: "#contact" },
 ] as const;
 
+export const heroContent = {
+  name: "Zahoor Ahmed",
+  taglines: [
+    {
+      icon: "chip",
+      text: "Building practical AI, data, and automation systems",
+    },
+    {
+      icon: "rocket",
+      text: "Turning ideas into useful products, workflows, and ventures",
+    },
+  ],
+  greeting: "Hello",
+  subheading: "What drives me",
+  description:
+    "I'm building at the intersection of AI, data, automation, and digital products. My focus is not just on ideas, but on turning them into practical systems, meaningful ventures, and work that creates real value.",
+  profileImage: {
+    classic: {
+      src: "/zahoor-profile-r1.png",
+      alt: "Portrait of Zahoor Ahmed",
+      className: "scale-[1.22] object-cover",
+      style: { objectPosition: "center -4%" } as const,
+    },
+  },
+  valueOverlay: {
+    lead: "Building practical systems. Creating",
+    highlight: "real value.",
+  },
+  buttons: [
+    { label: "Projects", href: "#projects", variant: "primary", icon: "briefcase" },
+    { label: "Contact", href: "#contact", variant: "outline", icon: "user" },
+    {
+      label: "Email",
+      href: "mailto:hello@zahoorahmed.com",
+      variant: "outline",
+      icon: "mail",
+    },
+  ],
+} as const;
+
 export const heroHighlights = [
   "AI Automation",
   "Data Analytics",
