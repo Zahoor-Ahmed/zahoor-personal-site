@@ -5,10 +5,8 @@ export const homeSectionPaddingX = "px-4 sm:px-6 lg:px-8";
 export const sectionCardShadow = "shadow-[var(--section-card-shadow)]";
 
 /** Dimmer gradient surfaces for section cards (hero uses .hero-card instead) */
-export const sectionCardSurface =
-  "section-card overflow-hidden border border-white/60";
-export const sectionCardInnerSurface =
-  "section-card-inner overflow-hidden border border-white/50";
+export const sectionCardSurface = "section-card overflow-hidden";
+export const sectionCardInnerSurface = "section-card-inner overflow-hidden";
 
 /**
  * Vertical gap between home sections.

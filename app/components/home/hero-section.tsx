@@ -6,7 +6,7 @@ export function HeroSection() {
   return (
     <section id="top" className={`relative ${homeSectionPaddingX}`}>
       <div className="relative mx-auto max-w-6xl animate-fade-up-soft">
-        <div className={`hero-card overflow-hidden rounded-[2.25rem] border border-white/70 px-6 py-[28px] ${sectionCardShadow} sm:px-8 lg:px-10`}>
+        <div className={`hero-card overflow-hidden rounded-[2.25rem] px-6 py-[28px] ${sectionCardShadow} sm:px-8 lg:px-10`}>
           <div className="grid gap-5">
             <div className="space-y-3">
               <div className="flex items-center gap-3">

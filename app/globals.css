@@ -6,6 +6,9 @@
   --surface: rgba(255, 255, 255, 0.82);
   --border: rgba(148, 163, 184, 0.18);
   --section-card-shadow: 0 22px 55px rgba(15, 23, 42, 0.1);
+  --hero-card-border: rgba(100, 132, 175, 0.28);
+  --section-card-border: rgba(96, 128, 172, 0.32);
+  --section-card-inner-border: rgba(88, 122, 168, 0.38);
   --brand-primary: #5d9fd4;
   --brand-primary-hover: #4f91c6;
   --brand-primary-shadow: rgba(93, 159, 212, 0.1);
@@ -76,11 +79,13 @@ body {
 .hero-card {
   background-color: #eef2f6;
   background-image: var(--hero-card-gradient);
+  border: 1px solid var(--hero-card-border);
 }
 
 .section-card {
   background-color: #e8edf3;
   background-image: var(--section-card-gradient);
+  border: 1px solid var(--section-card-border);
 }
 
 .section-card-inner {
