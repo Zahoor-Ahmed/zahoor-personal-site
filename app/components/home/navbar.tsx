@@ -16,7 +16,7 @@ export function Navbar({ links }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/40 bg-[#f8fafc]/75 px-4 py-2 backdrop-blur-md sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-slate-300/50 bg-[color-mix(in_srgb,var(--background)_88%,white)]/90 px-4 py-2 backdrop-blur-md sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-0.5">
         <Link
           href="/"
@@ -28,7 +28,7 @@ export function Navbar({ links }: NavbarProps) {
         <nav className="hidden items-center md:flex">
           <a
             href="#top"
-            className="rounded-[0.35rem] bg-[#a87908] px-5 py-2 text-sm font-medium text-white"
+            className="rounded-[0.35rem] bg-[var(--brand-primary)] px-5 py-2 text-sm font-medium text-white"
           >
             Home
           </a>
@@ -36,7 +36,7 @@ export function Navbar({ links }: NavbarProps) {
             <a
               key={link.href}
               href={link.href}
-              className="border-l border-slate-900/25 px-5 py-2 text-sm font-medium text-slate-950 transition hover:text-[#a87908]"
+              className="border-l border-slate-900/25 px-5 py-2 text-sm font-medium text-slate-950 transition hover:text-[var(--brand-primary)]"
             >
               {link.label}
             </a>
@@ -64,7 +64,7 @@ export function Navbar({ links }: NavbarProps) {
             <a
               href="#top"
               onClick={() => setIsOpen(false)}
-              className="rounded-[0.35rem] bg-[#a87908] px-4 py-3 text-sm font-medium text-white"
+              className="rounded-[0.35rem] bg-[var(--brand-primary)] px-4 py-3 text-sm font-medium text-white"
             >
               Home
             </a>

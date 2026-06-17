@@ -1,6 +1,6 @@
 import { featuredProjects } from "@/app/data/home-content";
 import { SectionHeading } from "@/app/components/home/section-heading";
-import { homeSectionPaddingX } from "@/app/components/home/section-layout";
+import { homeSectionPaddingX, sectionCardShadow, sectionCardSurface } from "@/app/components/home/section-layout";
 import { ProjectVisual } from "@/app/components/home/visuals/project-visual";
 
 export function FeaturedProjects() {
@@ -20,7 +20,7 @@ export function FeaturedProjects() {
           {featuredProjects.map((project, index) => (
             <article
               key={project.title}
-              className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white"
+              className={`flex h-full flex-col rounded-[1.75rem] ${sectionCardSurface} ${sectionCardShadow}`}
             >
               <div className="p-4 pb-0">
                 <ProjectVisual type={project.visual} title={project.title} />

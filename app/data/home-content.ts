@@ -17,6 +17,10 @@ export const aboutIntro = {
     "My background is in data analytics, reporting, and telecom customer experience, where the work was about turning complex information into clearer decisions.",
     "Now I'm applying that same practical mindset to AI products, automation workflows, and intelligence systems that support real business execution.",
   ],
+  readMoreParagraphs: [
+    "Along the way, I've worked on reporting pipelines, customer experience metrics, and internal tools that help teams act on data instead of just viewing it.",
+    "I'm especially interested in projects where AI can support real operational decisions in telecom and customer-facing environments.",
+  ],
 } as const;
 
 export const aboutHighlights = [

@@ -3,21 +3,19 @@ import {
   aboutIntro,
   aboutPillars,
 } from "@/app/data/home-content";
-import { SectionHeading } from "@/app/components/home/section-heading";
-import { homeSectionPaddingX } from "@/app/components/home/section-layout";
+import { AboutIntro } from "@/app/components/home/about-intro";
+import { homeSectionPaddingX, sectionCardShadow, sectionCardSurface, sectionCardInnerSurface } from "@/app/components/home/section-layout";
 
 export function AboutSection() {
   return (
     <section id="about" className={homeSectionPaddingX}>
       <div className="mx-auto max-w-6xl animate-fade-up-soft animation-delay-200">
-        <div className="grid gap-8 rounded-[2.25rem] bg-white px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:px-10">
-          <SectionHeading
+        <div className={`grid gap-8 rounded-[2.25rem] px-6 py-8 ${sectionCardSurface} ${sectionCardShadow} sm:px-8 sm:py-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:px-10`}>
+          <AboutIntro
             eyebrow="About"
-            eyebrowSizeClassName="text-[0.95rem] sm:text-base"
-            eyebrowClassName="font-bold tracking-[0.28em] text-sky-600"
             title={aboutIntro.title}
-            descriptions={aboutIntro.paragraphs}
-            descriptionClassName="text-base leading-7 text-slate-700"
+            paragraphs={aboutIntro.paragraphs}
+            readMoreParagraphs={aboutIntro.readMoreParagraphs}
           />
 
           <div className="space-y-4">
@@ -25,7 +23,7 @@ export function AboutSection() {
               {aboutHighlights.map((point) => (
                 <div
                   key={point.label}
-                  className="rounded-[1.75rem] border border-slate-200 bg-slate-50/70 p-5"
+                  className={`rounded-[1.75rem] p-5 ${sectionCardInnerSurface}`}
                 >
                   <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-600">
                     {point.label}

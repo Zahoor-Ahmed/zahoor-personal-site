@@ -1,22 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f8fb;
+  --background: #d5dde8;
   --foreground: #0f172a;
   --surface: rgba(255, 255, 255, 0.82);
   --border: rgba(148, 163, 184, 0.18);
+  --section-card-shadow: 0 22px 55px rgba(15, 23, 42, 0.1);
+  --brand-primary: #5d9fd4;
+  --brand-primary-hover: #4f91c6;
+  --brand-primary-shadow: rgba(93, 159, 212, 0.1);
+  --brand-accent: #4a88c4;
+  --brand-accent-line: #6ba3d6;
+  --brand-icon-bg: #c5ddf2;
+  --brand-icon-fg: #3f7fb8;
+  --brand-icon-border: rgba(74, 136, 196, 0.4);
+  --brand-icon-shadow: rgba(63, 127, 184, 0.18);
+  --hero-card-gradient: linear-gradient(
+    135deg,
+    #eef2f6 0%,
+    #e9f0f8 45%,
+    #dbeafe 100%
+  );
+  --section-card-gradient: linear-gradient(
+    135deg,
+    #e8edf3 0%,
+    #e2eaf2 45%,
+    #d4e3f4 100%
+  );
+  --section-card-inner-gradient: linear-gradient(
+    135deg,
+    #e3e9f0 0%,
+    #dde6ef 45%,
+    #cdddf0 100%
+  );
   --page-gradient:
     radial-gradient(
       ellipse 80% 50% at 18% 0%,
-      rgba(37, 99, 235, 0.07),
+      rgba(88, 124, 201, 0.14),
       transparent 70%
     ),
     radial-gradient(
       ellipse 60% 42% at 92% 18%,
-      rgba(168, 121, 8, 0.05),
+      rgba(88, 124, 201, 0.1),
       transparent 72%
     ),
-    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    linear-gradient(180deg, #dce3ec 0%, #cfd9e6 100%);
 }
 
 @theme inline {
@@ -43,6 +71,21 @@ body {
   color: var(--foreground);
   font-family: var(--font-plus-jakarta-sans), sans-serif;
   text-rendering: optimizeLegibility;
+}
+
+.hero-card {
+  background-color: #eef2f6;
+  background-image: var(--hero-card-gradient);
+}
+
+.section-card {
+  background-color: #e8edf3;
+  background-image: var(--section-card-gradient);
+}
+
+.section-card-inner {
+  background-color: #e3e9f0;
+  background-image: var(--section-card-inner-gradient);
 }
 
 @keyframes fade-up-soft {
