@@ -1,6 +1,7 @@
 import { buildAreas } from "@/app/data/home-content";
 import { SectionHeading } from "@/app/components/home/section-heading";
 import { homeSectionPaddingX } from "@/app/components/home/section-layout";
+import { BuildAreaIcon } from "@/app/components/home/visuals/build-area-icon";
 
 export function BrandSection() {
   return (
@@ -22,10 +23,13 @@ export function BrandSection() {
                 key={area.title}
                 className="rounded-[1.75rem] border border-slate-200 bg-slate-50/70 p-5"
               >
-                <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-600">
-                  0{index + 1}
-                </p>
-                <h3 className="mt-3 text-lg font-bold leading-snug tracking-tight text-slate-950 sm:text-xl">
+                <div className="flex items-start justify-between gap-3">
+                  <BuildAreaIcon type={area.icon} />
+                  <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-600">
+                    0{index + 1}
+                  </p>
+                </div>
+                <h3 className="mt-4 text-lg font-bold leading-snug tracking-tight text-slate-950 sm:text-xl">
                   {area.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">

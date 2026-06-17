@@ -40,16 +40,19 @@ export const aboutPillars = [
 export const buildAreas = [
   {
     title: "AI Products",
+    icon: "ai",
     description:
       "Focused tools and assistants built around real use cases, user needs, and practical workflows.",
   },
   {
     title: "Automation Systems",
+    icon: "automation",
     description:
       "Processes that reduce repetitive work, improve consistency, and turn manual tasks into reliable workflows.",
   },
   {
     title: "Analytics & Telecom",
+    icon: "analytics",
     description:
       "Decision systems built from real data, focused on insights, customer experience, and telecom performance.",
   },
@@ -59,6 +62,7 @@ export const featuredProjects = [
   {
     title: "EZ Leads",
     eyebrow: "AI Sales System",
+    visual: "ez-leads",
     description:
       "An AI-assisted WhatsApp lead management system designed to help businesses capture, understand, and follow up with leads faster.",
     tags: ["WhatsApp", "AI CRM", "Firebase"],
@@ -67,6 +71,7 @@ export const featuredProjects = [
   {
     title: "Business Process Automation",
     eyebrow: "Automation Workflows",
+    visual: "automation",
     description:
       "Repeatable workflows for reporting, content, follow-ups, and business tasks that reduce manual effort and improve consistency.",
     tags: ["Python", "APIs", "Automation"],
@@ -75,6 +80,7 @@ export const featuredProjects = [
   {
     title: "Analytics Dashboards",
     eyebrow: "Data & Telecom Analytics",
+    visual: "analytics",
     description:
       "Decision-support dashboards built from complex data, focused on KPIs, customer experience, telecom insights, and clearer reporting.",
     tags: ["SQL", "Analytics", "Telecom"],

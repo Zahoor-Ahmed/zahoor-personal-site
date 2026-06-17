@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { homeSectionPaddingX } from "@/app/components/home/section-layout";
+import { HeroSystemGraphic } from "@/app/components/home/visuals/hero-system-graphic";
 
 export function HeroSection() {
   return (
@@ -16,7 +17,7 @@ export function HeroSection() {
       <div className="relative mx-auto max-w-6xl animate-fade-up-soft">
         <div className="rounded-[2.25rem] bg-white px-6 py-[28px] shadow-[0_20px_60px_rgba(15,23,42,0.04)] sm:px-8 lg:px-10">
           <div className="grid gap-5">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-between">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <span className="h-[25px] w-[25px] rounded-full bg-[#eea11a] shadow-[0_0_0_4px_rgba(255,255,255,0.75)]" />
@@ -28,6 +29,10 @@ export function HeroSection() {
                   <p>Building practical AI, data, and automation systems</p>
                   <p>Turning ideas into useful products, workflows, and ventures</p>
                 </div>
+              </div>
+
+              <div className="hidden w-full max-w-[17rem] shrink-0 lg:block">
+                <HeroSystemGraphic />
               </div>
             </div>
 
