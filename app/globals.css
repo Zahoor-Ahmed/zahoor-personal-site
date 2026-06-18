@@ -3,9 +3,13 @@
 :root {
   --background: #d5dde8;
   --foreground: #0f172a;
+  --site-scroll-offset: 40px;
   --surface: rgba(255, 255, 255, 0.82);
   --border: rgba(148, 163, 184, 0.18);
   --section-card-shadow: 0 22px 55px rgba(15, 23, 42, 0.1);
+  --hero-card-border: rgba(100, 132, 175, 0.28);
+  --section-card-border: rgba(96, 128, 172, 0.32);
+  --section-card-inner-border: rgba(159, 179, 205, 0.38);
   --brand-primary: #5d9fd4;
   --brand-primary-hover: #4f91c6;
   --brand-primary-shadow: rgba(93, 159, 212, 0.1);
@@ -27,18 +31,26 @@
       transparent 72%
     ),
     linear-gradient(145deg, #ffffff 0%, #f9fbff 45%, #f2f7fc 100%);
+  --section-card-gradient: linear-gradient(
+    135deg,
+    #e8edf3 0%,
+    #e2eaf2 45%,
+    #d4e3f4 100%
+  );
+  --section-card-inner-gradient: linear-gradient(
+    135deg,
+    #e3e9f0 0%,
+    #dde6ef 45%,
+    #cdddf0 100%
+  );
   --page-gradient:
-    radial-gradient(
-      ellipse 80% 50% at 18% 0%,
-      rgba(88, 124, 201, 0.14),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 60% 42% at 92% 18%,
-      rgba(88, 124, 201, 0.1),
-      transparent 72%
-    ),
-    linear-gradient(180deg, #dce3ec 0%, #cfd9e6 100%);
+    #d5dde8;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-scroll-offset: 68px;
+  }
 }
 
 @theme inline {
@@ -56,15 +68,43 @@
 
 html {
   min-height: 100%;
-  background: var(--page-gradient);
+  background-color: var(--background);
+  scroll-padding-top: var(--site-scroll-offset);
 }
 
 body {
-  min-height: 100%;
-  background: transparent;
+  min-height: 100vh;
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-plus-jakarta-sans), sans-serif;
   text-rendering: optimizeLegibility;
+}
+
+.site-scale {
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+section[id] {
+  scroll-margin-top: var(--site-scroll-offset);
+}
+
+.hero-card {
+  background-color: #eef2f6;
+  background-image: var(--hero-card-gradient);
+  border: 1px solid var(--hero-card-border);
+}
+
+.section-card {
+  background-color: #e8edf3;
+  background-image: var(--section-card-gradient);
+  border: 1px solid var(--section-card-border);
+}
+
+.section-card-inner {
+  background-color: #e3e9f0;
+  background-image: var(--section-card-inner-gradient);
+  border: 1px solid var(--section-card-inner-border);
 }
 
 @keyframes fade-up-soft {

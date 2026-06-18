@@ -42,7 +42,7 @@ export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
 
   return (
     <section id="projects" className={homeSectionPaddingX}>
-      <div className={`mx-auto ${homeSectionMaxWidth} space-y-10 animate-fade-up-soft animation-delay-300`}>
+      <div className={`mx-auto ${homeSectionMaxWidth} space-y-6 animate-fade-up-soft animation-delay-300`}>
         <SectionHeading
           eyebrow={intro.eyebrow}
           eyebrowSizeClassName="text-[0.95rem] sm:text-base"
@@ -52,17 +52,17 @@ export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
           descriptionClassName={`max-w-2xl ${sectionIntroText}`}
         />
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-3">
           {projects.map((project, index) => (
             <article
               key={project.title}
-              className={`flex h-full flex-col rounded-[1.75rem] ${sectionCardSurface} ${sectionCardShadow}`}
+              className={`flex h-full flex-col rounded-[1.5rem] ${sectionCardSurface} ${sectionCardShadow}`}
             >
               <div className="p-4 pb-0">
                 <ProjectVisual type={project.visual} title={project.title} />
               </div>
 
-              <div className="flex flex-1 flex-col p-6 pt-5">
+              <div className="flex flex-1 flex-col p-5 pt-4">
                 <div className="flex items-start justify-between gap-3">
                   <p className="text-xs font-bold uppercase tracking-[0.22em] text-sky-600 sm:text-sm">
                     {project.eyebrow}
@@ -72,14 +72,14 @@ export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
                   </span>
                 </div>
 
-                <h3 className="mt-5 text-xl font-bold tracking-tight text-slate-950 sm:text-2xl">
+                <h3 className="mt-3 text-lg font-bold tracking-tight text-slate-950 sm:text-xl">
                   {project.title}
                 </h3>
-                <p className={`mt-4 flex-1 ${sectionCardText}`}>
+                <p className={`mt-3 flex-1 ${sectionCardText}`}>
                   {project.description}
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
@@ -92,7 +92,7 @@ export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
 
                 <a
                   href={project.href}
-                  className="mt-6 inline-flex items-center text-sm font-semibold text-sky-600 transition hover:text-sky-700"
+                  className="mt-4 inline-flex items-center text-sm font-semibold text-sky-600 transition hover:text-sky-700"
                 >
                   View project →
                 </a>

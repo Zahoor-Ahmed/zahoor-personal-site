@@ -75,7 +75,7 @@ function ShowcasePortraitStage({
             src={profile.src}
             alt={profile.alt}
             fill
-            sizes="(max-width: 900px) 340px, 380px"
+            sizes="(max-width: 900px) 310px, 330px"
             priority
           />
         </div>
@@ -97,7 +97,7 @@ export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
   const secondTagline = heroShowcase.taglines[1] ?? { icon: "rocket" as const, text: "" };
 
   return (
-    <section id="top" className={`relative ${homeSectionPaddingX}`}>
+    <section id="top" className={`relative z-0 ${homeSectionPaddingX}`}>
       <div className={`relative mx-auto ${homeSectionMaxWidth} animate-fade-up-soft`}>
         <div className="hero-card-showcase" aria-label="Zahoor Ahmed hero section">
           <div className="hero-showcase-corner-lines" />

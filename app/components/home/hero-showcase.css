@@ -13,18 +13,18 @@
    Bump these if taglines, description, or buttons feel small
    ───────────────────────────────────────────────────────── */
 .hero-card-showcase {
-  --showcase-tagline-size: 1.125rem;   /* 18px */
-  --showcase-desc-size: 1.125rem;     /* 18px */
-  --showcase-btn-size: 0.9375rem;      /* 15px */
-  --showcase-value-text-size: 1rem;    /* 16px */
+  --showcase-tagline-size: 1rem;       /* 16px */
+  --showcase-desc-size: 1rem;          /* 16px */
+  --showcase-btn-size: 0.875rem;       /* 14px */
+  --showcase-value-text-size: 0.9375rem; /* 15px */
 }
 
 @media (min-width: 901px) {
   .hero-card-showcase {
-    --showcase-tagline-size: 1.1875rem; /* 19px */
-    --showcase-desc-size: 1.25rem;     /* 20px */
-    --showcase-btn-size: 1rem;          /* 16px */
-    --showcase-value-text-size: 1.0625rem; /* 17px */
+    --showcase-tagline-size: 1.0625rem; /* 17px */
+    --showcase-desc-size: 1.125rem;     /* 18px */
+    --showcase-btn-size: 0.9375rem;     /* 15px */
+    --showcase-value-text-size: 1rem;   /* 16px */
   }
 }
 
@@ -37,10 +37,12 @@
 
 .hero-card-showcase {
   position: relative;
+  z-index: 0;
+  isolation: isolate;
   overflow: hidden;
-  min-height: 529px;
-  border-radius: 18px;
-  padding: 44px 58px 43px;
+  min-height: 420px;
+  border-radius: 16px;
+  padding: 30px 42px 30px;
   color: #f6fbff;
   background:
     radial-gradient(circle at 87% 76%, rgba(37, 91, 238, 0.46), transparent 30%),
@@ -48,7 +50,6 @@
     linear-gradient(126deg, #07172e 0%, #0a1c39 50%, #0d2759 100%);
   border: 1px solid rgba(72, 142, 255, 0.58);
   box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.42),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 0 55px rgba(48, 116, 255, 0.1);
 }
@@ -67,10 +68,10 @@
 .hero-card-showcase::after {
   content: "";
   position: absolute;
-  width: 190px;
-  height: 210px;
-  right: 28px;
-  top: 22px;
+  width: 160px;
+  height: 180px;
+  right: 24px;
+  top: 20px;
   background-image: radial-gradient(circle, rgba(59, 130, 246, 0.45) 1.2px, transparent 1.2px);
   background-size: 16px 16px;
   opacity: 0.35;
@@ -81,8 +82,8 @@
   position: absolute;
   left: -40px;
   bottom: -52px;
-  width: 260px;
-  height: 190px;
+  width: 220px;
+  height: 160px;
   border-radius: 50%;
   border: 1px solid rgba(43, 127, 255, 0.16);
   box-shadow:
@@ -107,13 +108,13 @@
 .hero-showcase-name-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 28px;
+  gap: 14px;
+  margin-bottom: 18px;
 }
 
 .hero-showcase-orb {
-  width: 33px;
-  height: 33px;
+  width: 28px;
+  height: 28px;
   border-radius: 999px;
   flex: 0 0 auto;
   background: radial-gradient(circle at 35% 30%, #8fd1ff 0%, #3d91ff 42%, #145dff 78%);
@@ -124,7 +125,7 @@
 
 .hero-showcase-name {
   margin: 0;
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1;
   font-weight: 760;
   letter-spacing: -0.04em;
@@ -132,9 +133,9 @@
 
 .hero-showcase-mini-lines {
   display: grid;
-  gap: 12px;
+  gap: 8px;
   margin-left: 2px;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   color: #c8d8ec;
   font-size: var(--showcase-tagline-size);
   line-height: 1.45;
@@ -143,28 +144,28 @@
 .hero-showcase-mini-line {
   display: flex;
   align-items: flex-start;
-  gap: 15px;
+  gap: 12px;
 }
 
 .hero-showcase-mini-line svg {
-  width: 22px;
-  height: 22px;
+  width: 19px;
+  height: 19px;
   margin-top: 2px;
   color: #298bff;
   flex: 0 0 auto;
 }
 
 .hero-showcase-blue-line {
-  width: 55px;
+  width: 48px;
   height: 2px;
-  margin: 29px 0 24px 1px;
+  margin: 18px 0 14px 1px;
   background: linear-gradient(90deg, #2d9cff, rgba(45, 156, 255, 0.15));
   box-shadow: 0 0 14px rgba(45, 156, 255, 0.7);
 }
 
 .hero-showcase-hello {
   margin: 0;
-  font-size: 72px;
+  font-size: 60px;
   line-height: 0.86;
   letter-spacing: -0.07em;
   font-weight: 820;
@@ -175,11 +176,11 @@
 }
 
 .hero-showcase-headline {
-  max-width: 560px;
-  font-size: 42px;
+  max-width: 500px;
+  font-size: 36px;
   line-height: 1.12;
   letter-spacing: 0.01em;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .hero-showcase-headline-accent {
@@ -189,32 +190,32 @@
 
 @media (min-width: 901px) {
   .hero-showcase-headline {
-    font-size: 58px;
+    font-size: 48px;
     line-height: 1.1;
     letter-spacing: 0.015em;
   }
 }
 
 .hero-showcase-desc {
-  margin: 0 0 27px;
-  max-width: 480px;
+  margin: 0 0 18px;
+  max-width: 430px;
   font-size: var(--showcase-desc-size);
-  line-height: 1.65;
+  line-height: 1.55;
   color: #d0dced;
 }
 
 .hero-showcase-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .hero-showcase-btn {
-  min-width: 120px;
-  height: 44px;
-  border-radius: 22px;
-  padding: 0 22px;
+  min-width: 108px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -230,8 +231,8 @@
 }
 
 .hero-showcase-btn svg {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
 }
 
 .hero-showcase-btn:hover {
@@ -251,8 +252,8 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 440px;
-  margin: 30px auto 0;
+  max-width: 390px;
+  margin: 24px auto 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -269,23 +270,23 @@
     max-width: none;
     height: auto;
     margin: 0;
-    padding: 44px 58px 43px 24px;
+    padding: 30px 42px 30px 18px;
   }
 }
 
 .hero-showcase-portrait-cluster {
   position: relative;
-  width: min(100%, 340px);
+  width: min(100%, 310px);
   height: auto;
-  min-height: 420px;
+  min-height: 350px;
   flex-shrink: 0;
   margin-inline: auto;
 }
 
 @media (min-width: 901px) {
   .hero-showcase-portrait-cluster {
-    width: 380px;
-    min-height: 460px;
+    width: 330px;
+    min-height: 368px;
   }
 }
 
@@ -293,8 +294,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 340px;
-  height: 340px;
+  width: 310px;
+  height: 310px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   overflow: hidden;
@@ -303,7 +304,6 @@
     linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(13, 39, 82, 0.45));
   border: 1.5px solid rgba(188, 224, 255, 0.62);
   box-shadow:
-    0 26px 70px rgba(0, 0, 0, 0.28),
     0 0 0 14px rgba(43, 127, 255, 0.055),
     0 0 0 28px rgba(43, 127, 255, 0.035),
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
@@ -312,8 +312,8 @@
 
 @media (min-width: 901px) {
   .hero-showcase-portrait-frame {
-    width: 380px;
-    height: 380px;
+    width: 330px;
+    height: 330px;
   }
 }
 
@@ -323,7 +323,6 @@
   inset: -14px;
   border-radius: 50%;
   border: 1px solid rgba(121, 184, 255, 0.22);
-  box-shadow: 0 0 28px rgba(44, 134, 255, 0.25);
   pointer-events: none;
 }
 
@@ -341,22 +340,21 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 400px;
-  height: 400px;
+  width: 360px;
+  height: 360px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background:
     radial-gradient(circle at 50% 50%, transparent 0 53%, rgba(69, 145, 255, 0.2) 53.5% 54%, transparent 54.5%),
     radial-gradient(circle at 50% 50%, transparent 0 67%, rgba(69, 145, 255, 0.14) 67.5% 68%, transparent 68.5%);
   opacity: 0.9;
-  filter: drop-shadow(0 0 16px rgba(43, 127, 255, 0.18));
   pointer-events: none;
 }
 
 @media (min-width: 901px) {
   .hero-showcase-portrait-wave {
-    width: 440px;
-    height: 440px;
+    width: 390px;
+    height: 390px;
   }
 }
 
@@ -364,8 +362,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 340px;
-  height: 340px;
+  width: 310px;
+  height: 310px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   border: 4px solid rgba(255, 255, 255, 0.88);
@@ -386,8 +384,8 @@
 
 @media (min-width: 901px) {
   .hero-showcase-portrait {
-    width: 380px;
-    height: 380px;
+    width: 330px;
+    height: 330px;
   }
 }
 
@@ -395,15 +393,15 @@
   position: absolute;
   z-index: 5;
   left: 50%;
-  top: calc(50% + 178px);
-  width: min(100%, 274px);
-  min-height: 76px;
+  top: calc(50% + 151px);
+  width: min(100%, 244px);
+  min-height: 68px;
   transform: translate(-50%, var(--value-card-y));
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 20px;
-  border-radius: 18px;
+  padding: 14px 18px;
+  border-radius: 16px;
   color: #dcecff;
   text-align: center;
   background: linear-gradient(145deg, rgba(18, 54, 104, 0.86), rgba(8, 26, 58, 0.82));
@@ -416,7 +414,7 @@
 
 @media (min-width: 901px) {
   .hero-showcase-value-card {
-    top: calc(50% + 198px);
+    top: calc(50% + 162px);
   }
 }
 
@@ -435,7 +433,7 @@
 
 @media (max-width: 900px) {
   .hero-card-showcase {
-    padding: 32px 26px;
+    padding: 26px 22px;
     min-height: auto;
   }
 }

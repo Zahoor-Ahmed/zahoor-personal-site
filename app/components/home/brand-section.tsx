@@ -27,9 +27,9 @@ function CardArcDecoration() {
 
 export function BrandSection({ whatIBuild }: BrandSectionProps) {
   return (
-    <section className={homeSectionPaddingX}>
+    <section className={`relative z-10 ${homeSectionPaddingX}`}>
       <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-100`}>
-        <div className={`relative grid gap-8 rounded-[2.25rem] px-6 py-8 ${sectionCardSurface} ${sectionCardShadow} sm:px-8 sm:py-10 lg:grid-cols-[0.68fr_1.32fr] lg:items-start lg:px-10`}>
+        <div className={`relative grid gap-5 rounded-[2rem] px-5 py-6 ${sectionCardSurface} ${sectionCardShadow} sm:px-6 sm:py-8 lg:grid-cols-[0.68fr_1.32fr] lg:items-start lg:px-7`}>
           <SectionHeading
             eyebrow={whatIBuild.eyebrow}
             eyebrowSizeClassName="text-[0.95rem] sm:text-base"
@@ -40,11 +40,11 @@ export function BrandSection({ whatIBuild }: BrandSectionProps) {
             descriptionClassName={sectionIntroText}
           />
 
-          <div className="relative grid gap-4 sm:grid-cols-3">
+          <div className="relative grid gap-3 sm:grid-cols-3">
             {whatIBuild.buildAreas.map((area, index) => (
               <div
                 key={area.title}
-                className={`relative rounded-[1.75rem] p-5 shadow-[0_10px_28px_rgba(15,23,42,0.05)] ${sectionCardInnerSurface}`}
+                className={`relative rounded-[1.5rem] p-4 shadow-[0_10px_28px_rgba(15,23,42,0.05)] ${sectionCardInnerSurface}`}
               >
                 <CardArcDecoration />
 
@@ -55,11 +55,11 @@ export function BrandSection({ whatIBuild }: BrandSectionProps) {
                   </p>
                 </div>
 
-                <h3 className="relative mt-4 text-lg font-bold leading-snug tracking-tight text-slate-950 sm:text-xl">
+                <h3 className="relative mt-2.5 text-base font-bold leading-snug tracking-tight text-slate-950 sm:text-lg">
                   {area.title}
                 </h3>
                 <span className="relative mt-2 block h-0.5 w-10 rounded-full bg-[var(--brand-accent-line)]" />
-                <p className={`relative mt-3 ${sectionCardText}`}>
+                <p className={`relative mt-2.5 ${sectionCardText}`}>
                   {area.description}
                 </p>
               </div>

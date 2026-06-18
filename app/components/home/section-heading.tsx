@@ -22,7 +22,7 @@ export function SectionHeading({
   const paragraphs = descriptions ?? (description ? [description] : []);
 
   return (
-    <div className="max-w-2xl space-y-4">
+    <div className="max-w-xl space-y-3">
       <div>
         <p
           className={`${eyebrowSizeClassName} font-semibold uppercase tracking-[0.24em] ${eyebrowClassName}`}
@@ -33,10 +33,10 @@ export function SectionHeading({
           <span className="mt-3 block h-0.5 w-12 rounded-full bg-[var(--brand-accent-line)]" />
         ) : null}
       </div>
-      <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+      <h2 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
         {title}
       </h2>
-      <div className="space-y-4">
+      <div className="space-y-3">
         {paragraphs.map((paragraph) => (
           <p key={paragraph} className={descriptionClassName}>
             {paragraph}
