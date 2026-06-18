@@ -57,16 +57,6 @@ function EmailIcon() {
   );
 }
 
-function ValueChartIcon() {
-  return (
-    <svg className="hero-showcase-value-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M10 48h44" />
-      <path d="M16 42l12-12 9 9 14-20" />
-      <path d="M43 19h8v8" />
-    </svg>
-  );
-}
-
 function ShowcasePortraitStage({
   profile,
   valueOverlay,
@@ -90,7 +80,6 @@ function ShowcasePortraitStage({
           />
         </div>
         <div className="hero-showcase-value-card">
-          <ValueChartIcon />
           <p>
             {valueOverlay.lead}
             <br />

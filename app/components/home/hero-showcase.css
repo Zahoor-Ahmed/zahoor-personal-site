@@ -1,10 +1,8 @@
 /* Dark premium showcase hero — ported from zahoor_hero reference */
 
 /* ── Value card position ────────────────────────────────────
-   "Practical systems / Real business value" overlay on portrait.
-   Positive X = move right · Negative X = move left
-   Positive Y = move down  · Negative Y = move up
-   Text styling: .hero-showcase-value-card p / strong below
+   Card sits centered under the portrait circle.
+   Positive Y = move down · Negative Y = move up
    ───────────────────────────────────────────────────────── */
 /* ── Portrait zoom / focus ──────────────────────────────────
    Circular frame size stays fixed; image scales inside it.
@@ -31,8 +29,7 @@
 }
 
 .hero-showcase-portrait-cluster {
-  --value-card-x: -90px;
-  --value-card-y: 40px;
+  --value-card-y: -30px;
   --portrait-zoom: 1.20;
   --portrait-focus-x: 50%;
   --portrait-focus-y: -10%;
@@ -278,16 +275,17 @@
 
 .hero-showcase-portrait-cluster {
   position: relative;
-  width: min(100%, 440px);
-  height: 400px;
+  width: min(100%, 340px);
+  height: auto;
+  min-height: 420px;
   flex-shrink: 0;
+  margin-inline: auto;
 }
 
 @media (min-width: 901px) {
   .hero-showcase-portrait-cluster {
-    width: min(100%, 460px);
-    height: 100%;
-    min-height: 380px;
+    width: 380px;
+    min-height: 460px;
   }
 }
 
@@ -397,16 +395,17 @@
   position: absolute;
   z-index: 5;
   left: 50%;
-  bottom: 0;
-  width: 274px;
+  top: calc(50% + 178px);
+  width: min(100%, 274px);
   min-height: 76px;
-  transform: translate(calc(-50% + var(--value-card-x)), var(--value-card-y));
+  transform: translate(-50%, var(--value-card-y));
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
   padding: 16px 20px;
   border-radius: 18px;
   color: #dcecff;
+  text-align: center;
   background: linear-gradient(145deg, rgba(18, 54, 104, 0.86), rgba(8, 26, 58, 0.82));
   border: 1px solid rgba(83, 158, 255, 0.55);
   box-shadow:
@@ -417,31 +416,21 @@
 
 @media (min-width: 901px) {
   .hero-showcase-value-card {
-    top: calc(50% + 105px);
-    left: auto;
-    right: 0;
-    bottom: auto;
-    transform: translate(var(--value-card-x), var(--value-card-y));
+    top: calc(50% + 198px);
   }
 }
 
 .hero-showcase-value-card p {
   margin: 0;
+  width: 100%;
   font-size: var(--showcase-value-text-size);
   line-height: 1.4;
+  text-align: center;
 }
 
 .hero-showcase-value-card strong {
   color: #35a6ff;
   font-weight: 800;
-}
-
-.hero-showcase-value-icon {
-  width: 42px;
-  height: 42px;
-  color: #2d91ff;
-  flex: 0 0 auto;
-  filter: drop-shadow(0 0 10px rgba(45, 145, 255, 0.5));
 }
 
 @media (max-width: 900px) {

@@ -9,7 +9,9 @@
     "lint": "eslint",
     "seed:projects": "sanity dataset import sanity/seed/projects.ndjson production --replace",
     "seed:home": "sanity exec sanity/seed/seed-home.ts --with-user-token",
-    "seed:home:text": "sanity dataset import sanity/seed/home-content.ndjson production --replace"
+    "seed:home:text": "sanity dataset import sanity/seed/home-content.ndjson production --replace",
+    "studio:cors": "sanity cors add http://localhost:3000 --credentials && sanity cors add http://127.0.0.1:3000 --credentials",
+    "studio:cors:list": "sanity cors list"
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",
