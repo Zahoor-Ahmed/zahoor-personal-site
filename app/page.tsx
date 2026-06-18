@@ -12,18 +12,16 @@ export default async function Home() {
   const content = await getHomeContent();
 
   return (
-    <>
+    <main>
       <Navbar links={content.navLinks} siteName={content.siteName} />
-      <main className="relative overflow-x-clip">
-        <div className={`flex flex-col ${homeSectionGap}`}>
-          <HeroSection content={content} />
-          <BrandSection whatIBuild={content.whatIBuild} />
-          <AboutSection about={content.about} />
-          <FeaturedProjects intro={content.projectsSection} />
-          <CtaSection contact={content.contact} />
-          <Footer footer={content.footer} />
-        </div>
-      </main>
-    </>
+      <div className={`relative overflow-x-clip flex flex-col ${homeSectionGap}`}>
+        <HeroSection content={content} />
+        <BrandSection whatIBuild={content.whatIBuild} />
+        <AboutSection about={content.about} />
+        <FeaturedProjects intro={content.projectsSection} />
+        <CtaSection contact={content.contact} />
+        <Footer footer={content.footer} />
+      </div>
+    </main>
   );
 }

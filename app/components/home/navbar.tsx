@@ -158,7 +158,7 @@ export function Navbar({ links, siteName }: NavbarProps) {
   };
 
   return (
-    <div className="site-nav-shell">
+    <>
       <div id={MOBILE_MENU_HASH} className="site-mobile-menu-layer" tabIndex={-1}>
         <a href="#close-menu" className="site-navbar-mobile-backdrop" aria-label="Close navigation menu" />
 
@@ -228,6 +228,6 @@ export function Navbar({ links, siteName }: NavbarProps) {
       </header>
 
       <div className="site-header-spacer" aria-hidden="true" />
-    </div>
+    </>
   );
 }
