@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { homeSectionMaxWidth } from "@/app/components/home/section-layout";
+import { homeSectionMaxWidth, homeSectionPaddingX } from "@/app/components/home/section-layout";
+
+import "./navbar.css";
 
 type NavLink = {
   label: string;
@@ -19,28 +21,18 @@ export function Navbar({ links, siteName }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-300/50 bg-[color-mix(in_srgb,var(--background)_88%,white)]/90 px-4 py-2 backdrop-blur-md sm:px-6 lg:px-8">
-      <div className={`mx-auto flex ${homeSectionMaxWidth} items-center justify-between px-4 py-0.5`}>
-        <Link
-          href="/"
-          className="ml-[70px] text-sm font-semibold uppercase tracking-[0.26em] text-slate-950"
-        >
+    <header className={`site-header ${homeSectionPaddingX}`}>
+      <div className={`site-navbar mx-auto ${homeSectionMaxWidth}`}>
+        <Link href="/" className="site-navbar-logo">
           {siteName}
         </Link>
 
-        <nav className="hidden items-center md:flex">
-          <a
-            href="#top"
-            className="rounded-[0.35rem] bg-[var(--brand-primary)] px-5 py-2 text-sm font-medium text-white"
-          >
+        <nav className="site-navbar-links" aria-label="Main navigation">
+          <a href="#top" className="site-navbar-link site-navbar-link-active">
             Home
           </a>
           {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="border-l border-slate-900/25 px-5 py-2 text-sm font-medium text-slate-950 transition hover:text-[var(--brand-primary)]"
-            >
+            <a key={link.href} href={link.href} className="site-navbar-link">
               {link.label}
             </a>
           ))}
@@ -51,7 +43,7 @@ export function Navbar({ links, siteName }: NavbarProps) {
           aria-expanded={isOpen}
           aria-label="Toggle navigation menu"
           onClick={() => setIsOpen((open) => !open)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-950 transition hover:border-slate-400 hover:bg-slate-50 md:hidden"
+          className="site-navbar-menu-btn"
         >
           <span className="sr-only">Open menu</span>
           <div className="space-y-1.5">
@@ -62,12 +54,12 @@ export function Navbar({ links, siteName }: NavbarProps) {
       </div>
 
       {isOpen ? (
-        <div className={`mx-auto mt-3 ${homeSectionMaxWidth} border border-slate-200 bg-white p-4 shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:hidden`}>
-          <nav className="flex flex-col gap-2">
+        <div className={`site-navbar-mobile-panel mx-auto ${homeSectionMaxWidth}`}>
+          <nav className="site-navbar-mobile-links" aria-label="Mobile navigation">
             <a
               href="#top"
               onClick={() => setIsOpen(false)}
-              className="rounded-[0.35rem] bg-[var(--brand-primary)] px-4 py-3 text-sm font-medium text-white"
+              className="site-navbar-mobile-link site-navbar-mobile-link-active"
             >
               Home
             </a>
@@ -76,7 +68,7 @@ export function Navbar({ links, siteName }: NavbarProps) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="border border-slate-200 px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-slate-950"
+                className="site-navbar-mobile-link"
               >
                 {link.label}
               </a>
