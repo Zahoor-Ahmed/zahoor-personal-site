@@ -183,47 +183,51 @@ export function Navbar({ links, siteName }: NavbarProps) {
         </div>
       </div>
 
-      <header ref={headerRef} className={`site-header ${homeSectionPaddingX}`}>
-        <div ref={navbarRef} className={`site-navbar mx-auto w-full ${homeSectionMaxWidth}`}>
-          <Link href="/" className="site-navbar-logo">
-            {siteName}
-          </Link>
+      <header ref={headerRef} className="site-header">
+        <div className={homeSectionPaddingX}>
+          <div className={`site-header-track mx-auto w-full ${homeSectionMaxWidth}`}>
+            <div ref={navbarRef} className="site-navbar">
+              <Link href="/" className="site-navbar-logo">
+                {siteName}
+              </Link>
 
-          <nav className="site-navbar-links" aria-label="Main navigation">
-            {navItems.map((link) => (
+              <nav className="site-navbar-links" aria-label="Main navigation">
+                {navItems.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(event) => handleDesktopNavClick(event, link.href)}
+                    className={getDesktopLinkClassName(link.href)}
+                    aria-current={activeHref === link.href ? "page" : undefined}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+
               <a
-                key={link.href}
-                href={link.href}
-                onClick={(event) => handleDesktopNavClick(event, link.href)}
-                className={getDesktopLinkClassName(link.href)}
-                aria-current={activeHref === link.href ? "page" : undefined}
+                href={`#${MOBILE_MENU_HASH}`}
+                className="site-navbar-menu-btn site-navbar-menu-open"
+                aria-label="Open navigation menu"
               >
-                {link.label}
+                <span className="site-navbar-menu-icon" aria-hidden="true">
+                  <span />
+                  <span />
+                </span>
               </a>
-            ))}
-          </nav>
 
-          <a
-            href={`#${MOBILE_MENU_HASH}`}
-            className="site-navbar-menu-btn site-navbar-menu-open"
-            aria-label="Open navigation menu"
-          >
-            <span className="site-navbar-menu-icon" aria-hidden="true">
-              <span />
-              <span />
-            </span>
-          </a>
-
-          <a
-            href="#close-menu"
-            className="site-navbar-menu-btn site-navbar-menu-close"
-            aria-label="Close navigation menu"
-          >
-            <span className="site-navbar-menu-icon" aria-hidden="true">
-              <span />
-              <span />
-            </span>
-          </a>
+              <a
+                href="#close-menu"
+                className="site-navbar-menu-btn site-navbar-menu-close"
+                aria-label="Close navigation menu"
+              >
+                <span className="site-navbar-menu-icon" aria-hidden="true">
+                  <span />
+                  <span />
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </header>
 
