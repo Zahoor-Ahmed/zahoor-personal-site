@@ -1,5 +1,5 @@
 /** Horizontal padding shared by all home sections */
-export const homeSectionPaddingX = "px-4 sm:px-6 lg:px-8";
+export const homeSectionPaddingX = "px-3 sm:px-6 lg:px-8";
 
 /**
  * Max content width — navbar, hero, and all section cards.
