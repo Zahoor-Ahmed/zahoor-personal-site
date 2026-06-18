@@ -1,9 +1,13 @@
 import Image from "next/image";
 
-import { heroContent, heroShowcaseContent } from "@/app/data/home-content";
+import type { HomeContent } from "@/app/lib/get-home-content";
 import { homeSectionPaddingX, homeSectionMaxWidth } from "@/app/components/home/section-layout";
 
 import "./hero-showcase.css";
+
+type HeroSectionShowcaseProps = {
+  content: HomeContent;
+};
 
 function ChipTaglineIcon() {
   return (
@@ -63,9 +67,13 @@ function ValueChartIcon() {
   );
 }
 
-function ShowcasePortraitStage() {
-  const profile = heroContent.profileImage.classic;
-
+function ShowcasePortraitStage({
+  profile,
+  valueOverlay,
+}: {
+  profile: HomeContent["profileImage"];
+  valueOverlay: HomeContent["heroShowcase"]["valueOverlay"];
+}) {
   return (
     <div className="hero-showcase-portrait-stage" aria-hidden="true">
       <div className="hero-showcase-portrait-cluster">
@@ -84,9 +92,9 @@ function ShowcasePortraitStage() {
         <div className="hero-showcase-value-card">
           <ValueChartIcon />
           <p>
-            {heroShowcaseContent.valueOverlay.lead}
+            {valueOverlay.lead}
             <br />
-            <strong>{heroShowcaseContent.valueOverlay.highlight}</strong>
+            <strong>{valueOverlay.highlight}</strong>
           </p>
         </div>
       </div>
@@ -94,8 +102,10 @@ function ShowcasePortraitStage() {
   );
 }
 
-export function HeroSectionShowcase() {
-  const [firstTagline, secondTagline] = heroShowcaseContent.taglines;
+export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
+  const { heroShowcase, siteName, heroButtons, profileImage } = content;
+  const firstTagline = heroShowcase.taglines[0] ?? { icon: "chip" as const, text: "" };
+  const secondTagline = heroShowcase.taglines[1] ?? { icon: "rocket" as const, text: "" };
 
   return (
     <section id="top" className={`relative ${homeSectionPaddingX}`}>
@@ -106,7 +116,7 @@ export function HeroSectionShowcase() {
           <div className="hero-showcase-content">
             <div className="hero-showcase-name-row">
               <span className="hero-showcase-orb" aria-hidden="true" />
-              <h1 className="hero-showcase-name">{heroContent.name}</h1>
+              <h1 className="hero-showcase-name">{siteName}</h1>
             </div>
 
             <div className="hero-showcase-mini-lines">
@@ -123,15 +133,15 @@ export function HeroSectionShowcase() {
             <div className="hero-showcase-blue-line" aria-hidden="true" />
 
             <h2 className="hero-showcase-hello hero-showcase-headline">
-              {heroShowcaseContent.headline.before}
+              {heroShowcase.headline.before}
               <span className="hero-showcase-headline-accent">
-                {heroShowcaseContent.headline.accent}
+                {heroShowcase.headline.accent}
               </span>
             </h2>
-            <p className="hero-showcase-desc">{heroShowcaseContent.description}</p>
+            <p className="hero-showcase-desc">{heroShowcase.description}</p>
 
             <div className="hero-showcase-actions">
-              {heroContent.buttons.map((button) =>
+              {heroButtons.map((button) =>
                 button.variant === "primary" ? (
                   <a
                     key={button.label}
@@ -152,7 +162,7 @@ export function HeroSectionShowcase() {
             </div>
           </div>
 
-          <ShowcasePortraitStage />
+          <ShowcasePortraitStage profile={profileImage} valueOverlay={heroShowcase.valueOverlay} />
         </div>
       </div>
     </section>

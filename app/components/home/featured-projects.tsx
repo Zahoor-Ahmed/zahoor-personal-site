@@ -1,23 +1,59 @@
 import { featuredProjects } from "@/app/data/home-content";
+import type { HomeContent } from "@/app/lib/get-home-content";
 import { SectionHeading } from "@/app/components/home/section-heading";
-import { homeSectionPaddingX, homeSectionMaxWidth, sectionCardShadow, sectionCardSurface, sectionIntroText, sectionCardText } from "@/app/components/home/section-layout";
+import {
+  homeSectionPaddingX,
+  homeSectionMaxWidth,
+  sectionCardShadow,
+  sectionCardSurface,
+  sectionIntroText,
+  sectionCardText,
+} from "@/app/components/home/section-layout";
 import { ProjectVisual } from "@/app/components/home/visuals/project-visual";
+import { client } from "@/sanity/lib/client";
+import {
+  featuredProjectsQuery,
+  type SanityFeaturedProject,
+} from "@/sanity/queries/projects";
 
-export function FeaturedProjects() {
+type FeaturedProjectsProps = {
+  intro: HomeContent["projectsSection"];
+};
+
+async function getFeaturedProjects(): Promise<SanityFeaturedProject[]> {
+  try {
+    const projects = await client.fetch<SanityFeaturedProject[]>(
+      featuredProjectsQuery,
+      {},
+      { cache: "no-store" },
+    );
+    return projects ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
+  const sanityProjects = await getFeaturedProjects();
+  const projects =
+    sanityProjects.length > 0
+      ? sanityProjects
+      : featuredProjects.map((project) => ({ ...project }));
+
   return (
     <section id="projects" className={homeSectionPaddingX}>
       <div className={`mx-auto ${homeSectionMaxWidth} space-y-10 animate-fade-up-soft animation-delay-300`}>
         <SectionHeading
-          eyebrow="Featured Projects"
+          eyebrow={intro.eyebrow}
           eyebrowSizeClassName="text-[0.95rem] sm:text-base"
           eyebrowClassName="font-bold tracking-[0.28em] text-sky-600"
-          title="Practical work across AI, automation, and analytics"
-          description="A selection of products, workflows, and data systems I'm building or have worked on, focused on usefulness, execution, and real-world decision support."
+          title={intro.title}
+          description={intro.description}
           descriptionClassName={`max-w-2xl ${sectionIntroText}`}
         />
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {featuredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <article
               key={project.title}
               className={`flex h-full flex-col rounded-[1.75rem] ${sectionCardSurface} ${sectionCardShadow}`}

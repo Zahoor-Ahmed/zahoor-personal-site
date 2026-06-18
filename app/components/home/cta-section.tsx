@@ -1,5 +1,9 @@
-import { ctaContent, ctaLinks } from "@/app/data/home-content";
+import type { HomeContent } from "@/app/lib/get-home-content";
 import { homeSectionPaddingX, homeSectionMaxWidth, sectionDarkBodyText } from "@/app/components/home/section-layout";
+
+type CtaSectionProps = {
+  contact: HomeContent["contact"];
+};
 
 function EnvelopeIcon({ className }: { className?: string }) {
   return (
@@ -56,7 +60,9 @@ function ContactGraphic() {
   );
 }
 
-export function CtaSection() {
+export function CtaSection({ contact }: CtaSectionProps) {
+  const [primaryLink, secondaryLink] = contact.links;
+
   return (
     <section id="contact" className={homeSectionPaddingX}>
       <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-400`}>
@@ -67,18 +73,18 @@ export function CtaSection() {
             <div className="space-y-6">
               <div>
                 <p className="text-sm font-bold uppercase tracking-[0.28em] text-sky-300/90">
-                  Contact
+                  {contact.eyebrow}
                 </p>
                 <span className="mt-3 block h-0.5 w-12 rounded-full bg-sky-400" />
               </div>
 
               <h2 className="max-w-xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-                {ctaContent.title}
+                {contact.title}
                 <span className="text-sky-400">?</span>
               </h2>
 
               <p className={`max-w-xl ${sectionDarkBodyText}`}>
-                {ctaContent.description}
+                {contact.description}
               </p>
             </div>
 
@@ -86,20 +92,24 @@ export function CtaSection() {
               <ContactGraphic />
 
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                <a
-                  href={ctaLinks[0].href}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 shadow-[0_14px_34px_rgba(255,255,255,0.14)] transition hover:bg-slate-100"
-                >
-                  <EnvelopeIcon className="h-4 w-4" />
-                  {ctaLinks[0].label}
-                </a>
-                <a
-                  href={ctaLinks[1].href}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-sky-400/50 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-                >
-                  {ctaLinks[1].label}
-                  <span aria-hidden="true">→</span>
-                </a>
+                {primaryLink ? (
+                  <a
+                    href={primaryLink.href}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 shadow-[0_14px_34px_rgba(255,255,255,0.14)] transition hover:bg-slate-100"
+                  >
+                    <EnvelopeIcon className="h-4 w-4" />
+                    {primaryLink.label}
+                  </a>
+                ) : null}
+                {secondaryLink ? (
+                  <a
+                    href={secondaryLink.href}
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-sky-400/50 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  >
+                    {secondaryLink.label}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                ) : null}
               </div>
             </div>
           </div>

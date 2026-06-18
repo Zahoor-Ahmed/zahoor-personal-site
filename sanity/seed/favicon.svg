@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Zahoor Ahmed">
+  <rect width="32" height="32" rx="8" fill="#4a88c4" />
+  <path
+    fill="#ffffff"
+    d="M8 8.5h16v3.2H13.8L22.2 23.5H8v-3.2h10.4L8 8.5z"
+  />
+</svg>

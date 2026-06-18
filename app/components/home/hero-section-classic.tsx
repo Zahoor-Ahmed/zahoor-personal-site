@@ -1,10 +1,14 @@
 import Image from "next/image";
 
-import { heroContent } from "@/app/data/home-content";
+import type { HomeContent } from "@/app/lib/get-home-content";
 import { homeSectionPaddingX, homeSectionMaxWidth, sectionCardShadow } from "@/app/components/home/section-layout";
 
-export function HeroSectionClassic() {
-  const profile = heroContent.profileImage.classic;
+type HeroSectionClassicProps = {
+  content: HomeContent;
+};
+
+export function HeroSectionClassic({ content }: HeroSectionClassicProps) {
+  const { siteName, profileImage, heroClassic, heroButtons } = content;
 
   return (
     <section id="top" className={`relative ${homeSectionPaddingX}`}>
@@ -17,11 +21,11 @@ export function HeroSectionClassic() {
               <div className="flex items-center gap-3">
                 <span className="h-[22px] w-[22px] rounded-full bg-[var(--brand-primary)] ring-4 ring-white" />
                 <p className="text-[1.8rem] font-semibold tracking-tight text-slate-950 sm:text-[2rem]">
-                  {heroContent.name}
+                  {siteName}
                 </p>
               </div>
               <div className="max-w-xl space-y-0.5 pl-9 text-sm leading-[1.7] text-slate-900 sm:text-[0.98rem]">
-                {heroContent.taglines.map((tagline) => (
+                {heroClassic.taglines.map((tagline) => (
                   <p key={tagline.text}>{tagline.text}</p>
                 ))}
               </div>
@@ -31,13 +35,13 @@ export function HeroSectionClassic() {
               <div className="relative mx-auto w-full max-w-[20rem] lg:mx-0 lg:justify-self-center xl:max-w-[22rem]">
                 <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white bg-[#d5d5d5] shadow-[0_18px_36px_rgba(15,23,42,0.10)]">
                   <Image
-                    key={profile.src}
-                    src={profile.src}
-                    alt={profile.alt}
+                    key={profileImage.src}
+                    src={profileImage.src}
+                    alt={profileImage.alt}
                     fill
                     sizes="(max-width: 1024px) 72vw, 384px"
-                    className={profile.className}
-                    style={profile.style}
+                    className="scale-[1.22] object-cover"
+                    style={{ objectPosition: "center -4%" }}
                     priority
                   />
                 </div>
@@ -46,19 +50,19 @@ export function HeroSectionClassic() {
               <div className="max-w-2xl space-y-4">
                 <div className="space-y-4">
                   <p className="-ml-0.5 text-[3.35rem] font-semibold leading-none tracking-tight text-slate-950 sm:text-[4.1rem]">
-                    {heroContent.greeting}
+                    {heroClassic.greeting}
                   </p>
                   <p className="pl-0.5 text-[1.55rem] font-semibold tracking-tight text-slate-950 sm:text-[1.7rem]">
-                    {heroContent.subheading}
+                    {heroClassic.subheading}
                   </p>
                 </div>
 
                 <p className="max-w-xl pl-0.5 text-[0.98rem] leading-7 text-slate-900 sm:text-[1rem]">
-                  {heroContent.description}
+                  {heroClassic.description}
                 </p>
 
                 <div className="flex flex-wrap gap-3 pt-2">
-                  {heroContent.buttons.map((button) =>
+                  {heroButtons.map((button) =>
                     button.variant === "primary" ? (
                       <a
                         key={button.label}

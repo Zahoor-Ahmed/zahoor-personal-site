@@ -6,19 +6,21 @@ import { Footer } from "@/app/components/home/footer";
 import { HeroSection } from "@/app/components/home/hero-section";
 import { Navbar } from "@/app/components/home/navbar";
 import { homeSectionGap } from "@/app/components/home/section-layout";
-import { navLinks } from "@/app/data/home-content";
+import { getHomeContent } from "@/app/lib/get-home-content";
 
-export default function Home() {
+export default async function Home() {
+  const content = await getHomeContent();
+
   return (
     <main className="relative overflow-x-clip">
-      <Navbar links={navLinks} />
+      <Navbar links={content.navLinks} siteName={content.siteName} />
       <div className={`flex flex-col ${homeSectionGap}`}>
-        <HeroSection />
-        <BrandSection />
-        <AboutSection />
-        <FeaturedProjects />
-        <CtaSection />
-        <Footer />
+        <HeroSection content={content} />
+        <BrandSection whatIBuild={content.whatIBuild} />
+        <AboutSection about={content.about} />
+        <FeaturedProjects intro={content.projectsSection} />
+        <CtaSection contact={content.contact} />
+        <Footer footer={content.footer} />
       </div>
     </main>
   );

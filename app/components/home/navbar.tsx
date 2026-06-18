@@ -12,9 +12,10 @@ type NavLink = {
 
 type NavbarProps = {
   links: readonly NavLink[];
+  siteName: string;
 };
 
-export function Navbar({ links }: NavbarProps) {
+export function Navbar({ links, siteName }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -24,7 +25,7 @@ export function Navbar({ links }: NavbarProps) {
           href="/"
           className="ml-[70px] text-sm font-semibold uppercase tracking-[0.26em] text-slate-950"
         >
-          Zahoor Ahmed
+          {siteName}
         </Link>
 
         <nav className="hidden items-center md:flex">

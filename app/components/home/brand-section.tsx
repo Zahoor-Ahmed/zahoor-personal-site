@@ -1,7 +1,19 @@
-import { buildAreas } from "@/app/data/home-content";
+import type { HomeContent } from "@/app/lib/get-home-content";
 import { SectionHeading } from "@/app/components/home/section-heading";
-import { homeSectionPaddingX, homeSectionMaxWidth, sectionCardShadow, sectionCardSurface, sectionCardInnerSurface, sectionIntroText, sectionCardText } from "@/app/components/home/section-layout";
+import {
+  homeSectionPaddingX,
+  homeSectionMaxWidth,
+  sectionCardShadow,
+  sectionCardSurface,
+  sectionCardInnerSurface,
+  sectionIntroText,
+  sectionCardText,
+} from "@/app/components/home/section-layout";
 import { BuildAreaIcon } from "@/app/components/home/visuals/build-area-icon";
+
+type BrandSectionProps = {
+  whatIBuild: HomeContent["whatIBuild"];
+};
 
 function CardArcDecoration() {
   return (
@@ -13,23 +25,23 @@ function CardArcDecoration() {
   );
 }
 
-export function BrandSection() {
+export function BrandSection({ whatIBuild }: BrandSectionProps) {
   return (
     <section className={homeSectionPaddingX}>
       <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-100`}>
-        <div className={`relative grid gap-8 rounded-[2.25rem] px-6 py-8 ${sectionCardSurface} ${sectionCardShadow} sm:px-8 sm:py-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:px-10`}>
+        <div className={`relative grid gap-8 rounded-[2.25rem] px-6 py-8 ${sectionCardSurface} ${sectionCardShadow} sm:px-8 sm:py-10 lg:grid-cols-[0.68fr_1.32fr] lg:items-start lg:px-10`}>
           <SectionHeading
-            eyebrow="What I Build"
+            eyebrow={whatIBuild.eyebrow}
             eyebrowSizeClassName="text-[0.95rem] sm:text-base"
             eyebrowClassName="font-bold tracking-[0.28em] text-[var(--brand-accent)]"
             showEyebrowAccent
-            title="Practical AI, data, and automation systems"
-            description="I build useful digital systems that help people reduce manual work, make clearer decisions, and move ideas from concept to execution. My long-term direction is applying this work at the intersection of AI, analytics, and telecom systems."
+            title={whatIBuild.title}
+            description={whatIBuild.description}
             descriptionClassName={sectionIntroText}
           />
 
           <div className="relative grid gap-4 sm:grid-cols-3">
-            {buildAreas.map((area, index) => (
+            {whatIBuild.buildAreas.map((area, index) => (
               <div
                 key={area.title}
                 className={`relative rounded-[1.75rem] p-5 shadow-[0_10px_28px_rgba(15,23,42,0.05)] ${sectionCardInnerSurface}`}

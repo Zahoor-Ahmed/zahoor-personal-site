@@ -6,12 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:projects": "sanity dataset import sanity/seed/projects.ndjson production --replace",
+    "seed:home": "sanity exec sanity/seed/seed-home.ts --with-user-token",
+    "seed:home:text": "sanity dataset import sanity/seed/home-content.ndjson production --replace"
   },
   "dependencies": {
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^5.31.1",
     "next": "16.2.3",
+    "next-sanity": "^13.1.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "sanity": "^5.31.1",
+    "styled-components": "^6.4.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
