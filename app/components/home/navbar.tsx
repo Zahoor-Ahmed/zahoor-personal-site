@@ -1,16 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  type MouseEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from "react";
-import { createPortal } from "react-dom";
+import { type MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { homeSectionMaxWidth, homeSectionPaddingX } from "@/app/components/home/section-layout";
 
@@ -26,25 +17,19 @@ type NavbarProps = {
   siteName: string;
 };
 
-const subscribeNoop = () => () => {};
+const MOBILE_MENU_HASH = "site-mobile-menu";
 
 export function Navbar({ links, siteName }: NavbarProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("#top");
-  const [menuTop, setMenuTop] = useState("4.5rem");
+  const headerRef = useRef<HTMLElement>(null);
   const navbarRef = useRef<HTMLDivElement>(null);
   const scrollSpyPausedRef = useRef(false);
   const scrollSpyTimeoutRef = useRef<number | null>(null);
-  const isClient = useSyncExternalStore(subscribeNoop, () => true, () => false);
 
   const navItems = useMemo(
     () => [{ label: "Home", href: "#top" }, ...links],
     [links],
   );
-
-  const closeMenu = useCallback(() => {
-    setIsOpen(false);
-  }, []);
 
   const getScrollOffset = useCallback(() => {
     const fallback = Number.parseFloat(
@@ -54,27 +39,43 @@ export function Navbar({ links, siteName }: NavbarProps) {
     return navbarRef.current?.getBoundingClientRect().bottom ?? (fallback || 86);
   }, []);
 
-  const updateMenuTop = useCallback(() => {
-    if (!navbarRef.current) {
+  const updateHeaderHeight = useCallback(() => {
+    if (!headerRef.current) {
       return;
     }
 
-    const bottom = navbarRef.current.getBoundingClientRect().bottom;
-    setMenuTop(`${bottom + 8}px`);
+    document.documentElement.style.setProperty(
+      "--site-mobile-header-height",
+      `${headerRef.current.offsetHeight}px`,
+    );
   }, []);
 
   useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    updateMenuTop();
-    window.addEventListener("resize", updateMenuTop);
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
 
     return () => {
-      window.removeEventListener("resize", updateMenuTop);
+      window.removeEventListener("resize", updateHeaderHeight);
     };
-  }, [isOpen, updateMenuTop]);
+  }, [updateHeaderHeight]);
+
+  useEffect(() => {
+    const syncActiveFromHash = () => {
+      const hash = window.location.hash || "#top";
+      const matchingItem = navItems.find((item) => item.href === hash);
+
+      if (matchingItem) {
+        setActiveHref(matchingItem.href);
+      }
+    };
+
+    syncActiveFromHash();
+    window.addEventListener("hashchange", syncActiveFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", syncActiveFromHash);
+    };
+  }, [navItems]);
 
   useEffect(() => {
     const updateActiveLink = () => {
@@ -119,31 +120,13 @@ export function Navbar({ links, siteName }: NavbarProps) {
     };
   }, [getScrollOffset, navItems]);
 
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [closeMenu, isOpen]);
-
   const getDesktopLinkClassName = (href: string) =>
     `site-navbar-link${activeHref === href ? " site-navbar-link-active" : ""}`;
 
   const getMobileLinkClassName = (href: string) =>
     `site-navbar-mobile-link${activeHref === href ? " site-navbar-mobile-link-active" : ""}`;
 
-  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleDesktopNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     const id = href.startsWith("#") ? href.slice(1) : "";
     const section = id ? document.getElementById(id) : null;
 
@@ -172,50 +155,35 @@ export function Navbar({ links, siteName }: NavbarProps) {
 
     window.history.pushState(null, "", href);
     window.scrollTo({ top: targetTop, behavior: "smooth" });
-
-    window.setTimeout(closeMenu, 180);
   };
 
-  const mobileOverlay =
-    isOpen && isClient
-      ? createPortal(
-          <>
-            <button
-              type="button"
-              aria-label="Close navigation menu"
-              className="site-navbar-mobile-backdrop"
-              onClick={closeMenu}
-            />
-
-            <div
-              id="site-mobile-navigation"
-              className={`site-navbar-mobile-panel ${homeSectionPaddingX}`}
-              style={{ top: menuTop }}
-            >
-              <div className={`mx-auto w-full ${homeSectionMaxWidth}`}>
-                <nav className="site-navbar-mobile-links" aria-label="Mobile navigation">
-                  {navItems.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      onClick={(event) => handleNavClick(event, link.href)}
-                      className={getMobileLinkClassName(link.href)}
-                      aria-current={activeHref === link.href ? "page" : undefined}
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-            </div>
-          </>,
-          document.body,
-        )
-      : null;
-
   return (
-    <>
-      <header className={`site-header ${homeSectionPaddingX}`}>
+    <div className="site-nav-shell">
+      <div id={MOBILE_MENU_HASH} className="site-mobile-menu-layer" tabIndex={-1}>
+        <a href="#close-menu" className="site-navbar-mobile-backdrop" aria-label="Close navigation menu" />
+
+        <div
+          id="site-mobile-navigation"
+          className={`site-navbar-mobile-panel ${homeSectionPaddingX}`}
+        >
+          <div className={`mx-auto w-full ${homeSectionMaxWidth}`}>
+            <nav className="site-navbar-mobile-links" aria-label="Mobile navigation">
+              {navItems.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={getMobileLinkClassName(link.href)}
+                  aria-current={activeHref === link.href ? "page" : undefined}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <header ref={headerRef} className={`site-header ${homeSectionPaddingX}`}>
         <div ref={navbarRef} className={`site-navbar mx-auto w-full ${homeSectionMaxWidth}`}>
           <Link href="/" className="site-navbar-logo">
             {siteName}
@@ -226,7 +194,7 @@ export function Navbar({ links, siteName }: NavbarProps) {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={(event) => handleNavClick(event, link.href)}
+                onClick={(event) => handleDesktopNavClick(event, link.href)}
                 className={getDesktopLinkClassName(link.href)}
                 aria-current={activeHref === link.href ? "page" : undefined}
               >
@@ -235,24 +203,31 @@ export function Navbar({ links, siteName }: NavbarProps) {
             ))}
           </nav>
 
-          <button
-            type="button"
-            aria-expanded={isOpen}
-            aria-controls="site-mobile-navigation"
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            className="site-navbar-menu-btn"
-            onClick={() => setIsOpen((open) => !open)}
+          <a
+            href={`#${MOBILE_MENU_HASH}`}
+            className="site-navbar-menu-btn site-navbar-menu-open"
+            aria-label="Open navigation menu"
           >
-            <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
-            <div className="space-y-1.5" aria-hidden="true">
-              <span className="block h-0.5 w-4 bg-current" />
-              <span className="block h-0.5 w-4 bg-current" />
-            </div>
-          </button>
+            <span className="site-navbar-menu-icon" aria-hidden="true">
+              <span />
+              <span />
+            </span>
+          </a>
+
+          <a
+            href="#close-menu"
+            className="site-navbar-menu-btn site-navbar-menu-close"
+            aria-label="Close navigation menu"
+          >
+            <span className="site-navbar-menu-icon" aria-hidden="true">
+              <span />
+              <span />
+            </span>
+          </a>
         </div>
       </header>
 
-      {mobileOverlay}
-    </>
+      <div className="site-header-spacer" aria-hidden="true" />
+    </div>
   );
 }
