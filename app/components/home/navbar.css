@@ -3,8 +3,7 @@
   top: 0;
   z-index: 50;
   padding: 10px 0 6px;
-  background: rgba(226, 236, 248, 0.55);
-  backdrop-filter: blur(14px);
+  background: transparent;
 }
 
 .site-navbar {
