@@ -1,6 +1,7 @@
 export const navLinks = [
+  { label: "Products", href: "#products" },
+  { label: "What I Build", href: "#what-i-build" },
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -34,13 +35,13 @@ export const heroContent = {
     highlight: "real value.",
   },
   buttons: [
-    { label: "Projects", href: "#projects", variant: "primary", icon: "briefcase" },
-    { label: "Contact", href: "#contact", variant: "outline", icon: "user" },
+    { label: "View Products", href: "#products", variant: "primary", icon: "briefcase" },
+    { label: "Contact Me", href: "#contact", variant: "outline", icon: "user" },
     {
-      label: "Email",
-      href: "mailto:hello@zahoorahmed.com",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/zahoor-ahmed",
       variant: "outline",
-      icon: "mail",
+      icon: "linkedin",
     },
   ],
 } as const;
@@ -62,10 +63,10 @@ export const heroShowcaseContent = {
     accent: "value",
   },
   description:
-    "I design practical AI and automation solutions that help businesses move faster, work smarter, and execute better.",
+    "I build practical AI systems for SMB workflows, with a growing focus on telecom intelligence.",
   valueOverlay: {
-    lead: "Practical systems.",
-    highlight: "Real business value.",
+    lead: "AI Systems Builder",
+    highlight: "SMB + Telecom",
   },
 } as const;
 
@@ -84,7 +85,7 @@ export const aboutIntro = {
   ],
   readMoreParagraphs: [
     "Along the way, I've worked on reporting pipelines, customer experience metrics, and internal tools that help teams act on data instead of just viewing it.",
-    "I'm especially interested in projects where AI can support real operational decisions in telecom and customer-facing environments.",
+    "I'm especially interested in products where AI can support real operational decisions in telecom and customer-facing environments.",
   ],
 } as const;
 
@@ -133,7 +134,7 @@ export const featuredProjects = [
     eyebrow: "AI Sales System",
     visual: "ez-leads",
     description:
-      "An AI-assisted WhatsApp lead management system designed to help businesses capture, understand, and follow up with leads faster.",
+      "An AI-assisted WhatsApp lead management system for SMBs — built to capture, understand, and follow up with leads faster.",
     tags: ["WhatsApp", "AI CRM", "Firebase"],
     href: "#",
   },
@@ -169,7 +170,7 @@ export const ctaLinks = [
     href: "mailto:hello@zahoorahmed.com",
   },
   {
-    label: "View Projects",
-    href: "#projects",
+    label: "View Products",
+    href: "#products",
   },
 ] as const;

@@ -29,12 +29,22 @@ function RocketTaglineIcon() {
   );
 }
 
-function ProjectsIcon() {
+function ProductsIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M3 7h18v12H3z" />
       <path d="M8 7V5h8v2" />
       <path d="M3 12h18" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-12h4v2" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
     </svg>
   );
 }
@@ -130,24 +140,37 @@ export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
             <p className="hero-showcase-desc">{heroShowcase.description}</p>
 
             <div className="hero-showcase-actions">
-              {heroButtons.map((button) =>
-                button.variant === "primary" ? (
+              {heroButtons.map((button) => {
+                const isExternal = button.href.startsWith("http");
+
+                return button.variant === "primary" ? (
                   <a
                     key={button.label}
                     href={button.href}
                     className="hero-showcase-btn hero-showcase-btn-primary"
+                    {...(isExternal
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                   >
-                    {button.icon === "briefcase" ? <ProjectsIcon /> : null}
+                    {button.icon === "briefcase" ? <ProductsIcon /> : null}
                     {button.label}
                   </a>
                 ) : (
-                  <a key={button.label} href={button.href} className="hero-showcase-btn">
+                  <a
+                    key={button.label}
+                    href={button.href}
+                    className="hero-showcase-btn"
+                    {...(isExternal
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
                     {button.icon === "user" ? <ContactIcon /> : null}
                     {button.icon === "mail" ? <EmailIcon /> : null}
+                    {button.icon === "linkedin" ? <LinkedInIcon /> : null}
                     {button.label}
                   </a>
-                ),
-              )}
+                );
+              })}
             </div>
           </div>
 

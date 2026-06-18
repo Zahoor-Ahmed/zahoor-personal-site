@@ -41,7 +41,7 @@ export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
       : featuredProjects.map((project) => ({ ...project }));
 
   return (
-    <section id="projects" className={homeSectionPaddingX}>
+    <section id="products" className={homeSectionPaddingX}>
       <div className={`mx-auto ${homeSectionMaxWidth} space-y-6 animate-fade-up-soft animation-delay-300`}>
         <SectionHeading
           eyebrow={intro.eyebrow}
@@ -94,7 +94,7 @@ export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
                   href={project.href}
                   className="mt-4 inline-flex items-center text-sm font-semibold text-sky-600 transition hover:text-sky-700"
                 >
-                  View project →
+                  View product →
                 </a>
               </div>
             </article>

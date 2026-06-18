@@ -17,7 +17,7 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
       singleton(S, "whatIBuild", "What I Build", "whatIBuild"),
       singleton(S, "aboutPage", "About", "aboutPage"),
-      singleton(S, "projectsSection", "Featured Projects intro", "projectsSection"),
-      S.documentTypeListItem("project").title("Featured projects"),
+      singleton(S, "projectsSection", "Products intro", "projectsSection"),
+      S.documentTypeListItem("project").title("Products"),
       singleton(S, "contactSection", "Contact", "contactSection"),
     ]);

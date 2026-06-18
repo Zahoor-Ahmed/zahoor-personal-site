@@ -64,13 +64,13 @@ export const aboutPage = defineType({
 
 export const projectsSection = defineType({
   name: "projectsSection",
-  title: "Featured Projects intro",
+  title: "Products intro",
   type: "document",
   fields: [
     defineField({ name: "intro", title: "Section intro", type: "sectionIntro" }),
   ],
   preview: {
-    prepare: () => ({ title: "Featured Projects intro" }),
+    prepare: () => ({ title: "Products intro" }),
   },
 });
 

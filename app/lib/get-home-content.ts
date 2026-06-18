@@ -29,7 +29,7 @@ export type HeroButton = {
   label: string;
   href: string;
   variant: "primary" | "outline";
-  icon: "briefcase" | "user" | "mail";
+  icon: "briefcase" | "user" | "mail" | "linkedin";
 };
 export type Tagline = { icon: "chip" | "rocket"; text: string };
 export type ValueOverlay = { lead: string; highlight: string };
@@ -130,10 +130,10 @@ const defaults: HomeContent = {
     pillars: [...aboutPillars],
   },
   projectsSection: {
-    eyebrow: "Featured Projects",
-    title: "Practical work across AI, automation, and analytics",
+    eyebrow: "Products",
+    title: "Products I'm Building",
     description:
-      "A selection of products, workflows, and data systems I'm building or have worked on, focused on usefulness, execution, and real-world decision support.",
+      "Focused AI products and systems I'm building for SMB workflows — starting with practical tools that solve real lead management and automation problems.",
   },
   contact: {
     eyebrow: "Contact",

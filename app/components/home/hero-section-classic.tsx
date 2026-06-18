@@ -62,12 +62,17 @@ export function HeroSectionClassic({ content }: HeroSectionClassicProps) {
                 </p>
 
                 <div className="flex flex-wrap gap-3 pt-2">
-                  {heroButtons.map((button) =>
-                    button.variant === "primary" ? (
+                  {heroButtons.map((button) => {
+                    const isExternal = button.href.startsWith("http");
+
+                    return button.variant === "primary" ? (
                       <a
                         key={button.label}
                         href={button.href}
                         className="inline-flex items-center justify-center rounded-full bg-[var(--brand-primary)] px-5 py-2.5 text-sm font-medium tracking-tight text-white shadow-[0_4px_14px_var(--brand-primary-shadow)] transition hover:bg-[var(--brand-primary-hover)]"
+                        {...(isExternal
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
                       >
                         {button.label}
                       </a>
@@ -76,11 +81,14 @@ export function HeroSectionClassic({ content }: HeroSectionClassicProps) {
                         key={button.label}
                         href={button.href}
                         className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium tracking-tight text-slate-950 transition hover:border-slate-300 hover:bg-slate-50"
+                        {...(isExternal
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
                       >
                         {button.label}
                       </a>
-                    ),
-                  )}
+                    );
+                  })}
                 </div>
               </div>
             </div>

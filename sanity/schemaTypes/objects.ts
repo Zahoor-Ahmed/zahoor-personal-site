@@ -10,7 +10,7 @@ export const navLink = defineType({
       name: "href",
       title: "URL",
       type: "string",
-      description: "Use #about, #projects, or a full URL",
+      description: "Use #products, #what-i-build, #about, or a full URL",
     }),
   ],
 });
@@ -42,6 +42,7 @@ export const heroButton = defineType({
           { title: "Briefcase", value: "briefcase" },
           { title: "User", value: "user" },
           { title: "Mail", value: "mail" },
+          { title: "LinkedIn", value: "linkedin" },
         ],
       },
     }),
