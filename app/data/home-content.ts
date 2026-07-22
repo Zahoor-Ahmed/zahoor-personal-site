@@ -22,7 +22,7 @@ export const heroContent = {
   description:
     "I'm building at the intersection of AI, data, automation, and digital products. My focus is not just on ideas, but on turning them into practical systems, meaningful ventures, and work that creates real value.",
   profileImage: {
-    /** Change `src` to swap photo — files live in /public (e.g. zahoor-profile-r2.png) */
+    /** Change `src` to swap the portrait with another file from /public. */
     classic: {
       src: "/zahoor-profile-r1.png",
       alt: "Portrait of Zahoor Ahmed",
