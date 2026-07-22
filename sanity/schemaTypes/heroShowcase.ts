@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const heroShowcase = defineType({
   name: "heroShowcase",
@@ -28,6 +28,15 @@ export const heroShowcase = defineType({
       title: "Description",
       type: "text",
       rows: 4,
+    }),
+    defineField({
+      name: "heroButtons",
+      title: "Hero action buttons",
+      type: "array",
+      description:
+        "Edit the View Products, Contact Me, and LinkedIn buttons. Drag items to change their order.",
+      of: [defineArrayMember({ type: "heroButton" })],
+      validation: (rule) => rule.max(3).unique(),
     }),
     defineField({
       name: "valueOverlay",

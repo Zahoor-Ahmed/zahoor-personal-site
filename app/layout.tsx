@@ -13,9 +13,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Zahoor Ahmed | AI Systems Builder",
+  title: "Zahoor Ahmed | AI Strategy & Business Automation Leader",
   description:
-    "Personal website of Zahoor Ahmed, focused on AI systems, analytics, automation, and practical digital products.",
+    "I help business leaders identify high-impact AI opportunities, automate critical workflows, and improve operations, growth, and decision-making.",
 };
 
 export default function RootLayout({

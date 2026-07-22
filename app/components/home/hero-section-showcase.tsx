@@ -67,6 +67,57 @@ function EmailIcon() {
   );
 }
 
+function ServicesIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+      <path d="m15 18 2 2 4-5" />
+    </svg>
+  );
+}
+
+function ProductPackageIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m4 7 8-4 8 4-8 4-8-4Z" />
+      <path d="m4 7 8 4 8-4v10l-8 4-8-4V7Z" />
+      <path d="M12 11v10" />
+    </svg>
+  );
+}
+
+function ConsultationIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 15a3 3 0 0 1-3 3H9l-5 3v-3a3 3 0 0 1-2-3V7a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v8Z" />
+      <path d="M7 9h8M7 13h5" />
+    </svg>
+  );
+}
+
+function HeroButtonIcon({ icon }: { icon: HomeContent["heroButtons"][number]["icon"] }) {
+  switch (icon) {
+    case "services":
+      return <ServicesIcon />;
+    case "products":
+      return <ProductPackageIcon />;
+    case "consultation":
+      return <ConsultationIcon />;
+    case "briefcase":
+      return <ProductsIcon />;
+    case "user":
+      return <ContactIcon />;
+    case "mail":
+      return <EmailIcon />;
+    case "linkedin":
+      return <LinkedInIcon />;
+    default:
+      return null;
+  }
+}
+
 function ShowcasePortraitStage({
   profile,
   valueOverlay,
@@ -91,6 +142,12 @@ function ShowcasePortraitStage({
         </div>
         <div className="hero-showcase-value-card">
           <p>
+            {valueOverlay.name ? (
+              <>
+                <span className="hero-showcase-value-name">{valueOverlay.name}</span>
+                <br />
+              </>
+            ) : null}
             {valueOverlay.lead}
             <br />
             <strong>{valueOverlay.highlight}</strong>
@@ -103,8 +160,6 @@ function ShowcasePortraitStage({
 
 export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
   const { heroShowcase, siteName, heroButtons, profileImage } = content;
-  const firstTagline = heroShowcase.taglines[0] ?? { icon: "chip" as const, text: "" };
-  const secondTagline = heroShowcase.taglines[1] ?? { icon: "rocket" as const, text: "" };
 
   return (
     <section id="top" className={`relative z-0 ${homeSectionPaddingX}`}>
@@ -119,14 +174,13 @@ export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
             </div>
 
             <div className="hero-showcase-mini-lines">
-              <div className="hero-showcase-mini-line">
-                <ChipTaglineIcon />
-                <span>{firstTagline.text}</span>
-              </div>
-              <div className="hero-showcase-mini-line">
-                <RocketTaglineIcon />
-                <span>{secondTagline.text}</span>
-              </div>
+              {heroShowcase.taglines.map((tagline) => (
+                <div key={tagline.text} className="hero-showcase-mini-line">
+                  {tagline.icon === "chip" ? <ChipTaglineIcon /> : null}
+                  {tagline.icon === "rocket" ? <RocketTaglineIcon /> : null}
+                  <span>{tagline.text}</span>
+                </div>
+              ))}
             </div>
 
             <div className="hero-showcase-blue-line" aria-hidden="true" />
@@ -152,7 +206,7 @@ export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
                   >
-                    {button.icon === "briefcase" ? <ProductsIcon /> : null}
+                    <HeroButtonIcon icon={button.icon} />
                     {button.label}
                   </a>
                 ) : (
@@ -164,9 +218,7 @@ export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
                   >
-                    {button.icon === "user" ? <ContactIcon /> : null}
-                    {button.icon === "mail" ? <EmailIcon /> : null}
-                    {button.icon === "linkedin" ? <LinkedInIcon /> : null}
+                    <HeroButtonIcon icon={button.icon} />
                     {button.label}
                   </a>
                 );

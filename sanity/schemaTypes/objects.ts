@@ -10,7 +10,7 @@ export const navLink = defineType({
       name: "href",
       title: "URL",
       type: "string",
-      description: "Use #products, #what-i-build, #about, or a full URL",
+      description: "Use #services, #products, #about, or a full URL",
     }),
   ],
 });
@@ -20,8 +20,19 @@ export const heroButton = defineType({
   title: "Hero button",
   type: "object",
   fields: [
-    defineField({ name: "label", title: "Label", type: "string" }),
-    defineField({ name: "href", title: "URL", type: "string" }),
+    defineField({
+      name: "label",
+      title: "Label",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "href",
+      title: "Destination",
+      type: "string",
+      description: "Use a section link such as #products or #contact, or a full https:// URL.",
+      validation: (rule) => rule.required(),
+    }),
     defineField({
       name: "variant",
       title: "Style",
@@ -31,14 +42,21 @@ export const heroButton = defineType({
           { title: "Primary", value: "primary" },
           { title: "Outline", value: "outline" },
         ],
+        layout: "radio",
       },
+      initialValue: "outline",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "icon",
-      title: "Icon",
+      title: "Icon (optional)",
       type: "string",
+      description: "Leave empty for a text-only button.",
       options: {
         list: [
+          { title: "Services", value: "services" },
+          { title: "Products", value: "products" },
+          { title: "Consultation", value: "consultation" },
           { title: "Briefcase", value: "briefcase" },
           { title: "User", value: "user" },
           { title: "Mail", value: "mail" },
@@ -47,6 +65,12 @@ export const heroButton = defineType({
       },
     }),
   ],
+  preview: {
+    select: {
+      title: "label",
+      subtitle: "href",
+    },
+  },
 });
 
 export const tagline = defineType({
@@ -74,6 +98,12 @@ export const valueOverlay = defineType({
   title: "Value overlay",
   type: "object",
   fields: [
+    defineField({
+      name: "name",
+      title: "Name line",
+      type: "string",
+      description: "Optional first line, for example Engineer Zahoor Ahmed.",
+    }),
     defineField({ name: "lead", title: "Lead line", type: "string" }),
     defineField({ name: "highlight", title: "Highlighted line", type: "string" }),
   ],

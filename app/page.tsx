@@ -16,8 +16,8 @@ export default async function Home() {
       <Navbar links={content.navLinks} siteName={content.siteName} />
       <div className={`relative overflow-x-clip flex flex-col ${homeSectionGap}`}>
         <HeroSection content={content} />
-        <FeaturedProjects intro={content.projectsSection} />
         <BrandSection whatIBuild={content.whatIBuild} />
+        <FeaturedProjects intro={content.projectsSection} />
         <AboutSection about={content.about} />
         <CtaSection contact={content.contact} />
         <Footer footer={content.footer} />

@@ -85,10 +85,6 @@ body {
   background-color: var(--background);
 }
 
-section[id] {
-  scroll-margin-top: var(--site-scroll-offset);
-}
-
 .hero-card {
   background-color: #eef2f6;
   background-image: var(--hero-card-gradient);

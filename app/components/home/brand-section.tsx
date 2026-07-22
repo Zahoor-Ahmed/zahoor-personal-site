@@ -27,7 +27,7 @@ function CardArcDecoration() {
 
 export function BrandSection({ whatIBuild }: BrandSectionProps) {
   return (
-    <section id="what-i-build" className={`relative z-10 ${homeSectionPaddingX}`}>
+    <section id="services" className={`relative z-10 ${homeSectionPaddingX}`}>
       <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-100`}>
         <div className={`relative grid gap-5 rounded-[2rem] px-5 py-6 ${sectionCardSurface} ${sectionCardShadow} sm:px-6 sm:py-8 lg:grid-cols-[0.68fr_1.32fr] lg:items-start lg:px-7`}>
           <SectionHeading

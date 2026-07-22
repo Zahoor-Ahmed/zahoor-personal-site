@@ -40,13 +40,17 @@ export function Navbar({ links, siteName }: NavbarProps) {
   }, []);
 
   const updateHeaderHeight = useCallback(() => {
-    if (!headerRef.current) {
+    if (!headerRef.current || !navbarRef.current) {
       return;
     }
 
     document.documentElement.style.setProperty(
       "--site-mobile-header-height",
       `${headerRef.current.offsetHeight}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--site-scroll-offset",
+      `${navbarRef.current.getBoundingClientRect().bottom}px`,
     );
   }, []);
 

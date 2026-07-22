@@ -29,10 +29,17 @@ export type HeroButton = {
   label: string;
   href: string;
   variant: "primary" | "outline";
-  icon: "briefcase" | "user" | "mail" | "linkedin";
+  icon?:
+    | "services"
+    | "products"
+    | "consultation"
+    | "briefcase"
+    | "user"
+    | "mail"
+    | "linkedin";
 };
 export type Tagline = { icon: "chip" | "rocket"; text: string };
-export type ValueOverlay = { lead: string; highlight: string };
+export type ValueOverlay = { name?: string; lead: string; highlight: string };
 
 export type HomeContent = {
   heroVariant: HeroVariant;
@@ -114,8 +121,8 @@ const defaults: HomeContent = {
     valueOverlay: { ...heroContent.valueOverlay },
   },
   whatIBuild: {
-    eyebrow: "What I Build",
-    title: "Practical AI, data, and automation systems",
+    eyebrow: "Services",
+    title: "How I help businesses use AI, data, and automation",
     description:
       "I build useful digital systems that help people reduce manual work, make clearer decisions, and move ideas from concept to execution. My long-term direction is applying this work at the intersection of AI, analytics, and telecom systems.",
     buildAreas: [...buildAreas],
@@ -142,6 +149,32 @@ const defaults: HomeContent = {
     links: [...ctaLinks],
   },
 };
+
+const legacyShowcaseDescription =
+  "I build practical AI and automation systems for SMB workflows, with a growing focus on telecom intelligence.";
+
+const navLinkOrder = new Map([
+  ["#services", 0],
+  ["#products", 1],
+  ["#about", 2],
+  ["#contact", 3],
+]);
+
+function orderNavLinks(links: NavLink[]): NavLink[] {
+  const normalizedLinks = links.map((link) =>
+    link.href === "#what-i-build"
+      ? { ...link, label: "Services", href: "#services" }
+      : link.href === "#services" && link.label === "What I Build"
+        ? { ...link, label: "Services" }
+        : link,
+  );
+
+  return normalizedLinks.sort(
+    (first, second) =>
+      (navLinkOrder.get(first.href) ?? Number.MAX_SAFE_INTEGER) -
+      (navLinkOrder.get(second.href) ?? Number.MAX_SAFE_INTEGER),
+  );
+}
 
 type SanityProfileImage = {
   alt?: string;
@@ -187,6 +220,7 @@ export async function getHomeContent(): Promise<HomeContent> {
     const siteNavLinks = siteSettings?.navLinks as NavLink[] | undefined;
     const siteHeroButtons = siteSettings?.heroButtons as HeroButton[] | undefined;
     const showcaseTaglines = heroShowcase?.taglines as Tagline[] | undefined;
+    const showcaseHeroButtons = heroShowcase?.heroButtons as HeroButton[] | undefined;
     const classicTaglines = heroClassic?.taglines as Tagline[] | undefined;
     const buildAreasData = whatIBuild?.buildAreas as HomeContent["whatIBuild"]["buildAreas"] | undefined;
     const aboutParagraphs = aboutPage?.paragraphs as string[] | undefined;
@@ -194,15 +228,21 @@ export async function getHomeContent(): Promise<HomeContent> {
     const aboutHighlightsData = aboutPage?.highlights as HomeContent["about"]["highlights"] | undefined;
     const aboutPillarsData = aboutPage?.pillars as string[] | undefined;
     const contactLinks = contactSection?.links as NavLink[] | undefined;
+    const heroVariant =
+      siteSettings?.heroVariant === "classic" || siteSettings?.heroVariant === "showcase"
+        ? siteSettings.heroVariant
+        : defaults.heroVariant;
 
     return {
-      heroVariant:
-        siteSettings?.heroVariant === "classic" || siteSettings?.heroVariant === "showcase"
-          ? siteSettings.heroVariant
-          : defaults.heroVariant,
+      heroVariant,
       siteName: (siteSettings?.siteName as string) || defaults.siteName,
-      navLinks: siteNavLinks?.length ? siteNavLinks : defaults.navLinks,
-      heroButtons: siteHeroButtons?.length ? siteHeroButtons : defaults.heroButtons,
+      navLinks: orderNavLinks(siteNavLinks?.length ? siteNavLinks : defaults.navLinks),
+      heroButtons:
+        heroVariant === "showcase" && showcaseHeroButtons?.length
+          ? showcaseHeroButtons
+          : siteHeroButtons?.length
+            ? siteHeroButtons
+            : defaults.heroButtons,
       profileImage: resolveProfileImage(
         siteSettings?.profileImage as SanityProfileImage | undefined,
         siteSettings?.profileImageSrc as string | undefined,
@@ -219,8 +259,21 @@ export async function getHomeContent(): Promise<HomeContent> {
           before: (heroShowcase?.headlineBefore as string) || defaults.heroShowcase.headline.before,
           accent: (heroShowcase?.headlineAccent as string) || defaults.heroShowcase.headline.accent,
         },
-        description: (heroShowcase?.description as string) || defaults.heroShowcase.description,
-        valueOverlay: (heroShowcase?.valueOverlay as ValueOverlay) || defaults.heroShowcase.valueOverlay,
+        description:
+          !heroShowcase?.description || heroShowcase.description === legacyShowcaseDescription
+            ? defaults.heroShowcase.description
+            : (heroShowcase.description as string),
+        valueOverlay: {
+          name:
+            (heroShowcase?.valueOverlay as Partial<ValueOverlay> | undefined)?.name ||
+            defaults.heroShowcase.valueOverlay.name,
+          lead:
+            (heroShowcase?.valueOverlay as Partial<ValueOverlay> | undefined)?.lead ||
+            defaults.heroShowcase.valueOverlay.lead,
+          highlight:
+            (heroShowcase?.valueOverlay as Partial<ValueOverlay> | undefined)?.highlight ||
+            defaults.heroShowcase.valueOverlay.highlight,
+        },
       },
       heroClassic: {
         taglines: classicTaglines?.length ? classicTaglines : defaults.heroClassic.taglines,
@@ -230,8 +283,15 @@ export async function getHomeContent(): Promise<HomeContent> {
         valueOverlay: (heroClassic?.valueOverlay as ValueOverlay) || defaults.heroClassic.valueOverlay,
       },
       whatIBuild: {
-        eyebrow: ((whatIBuild?.intro as { eyebrow?: string })?.eyebrow) || defaults.whatIBuild.eyebrow,
-        title: ((whatIBuild?.intro as { title?: string })?.title) || defaults.whatIBuild.title,
+        eyebrow:
+          (whatIBuild?.intro as { eyebrow?: string })?.eyebrow === "What I Build"
+            ? defaults.whatIBuild.eyebrow
+            : ((whatIBuild?.intro as { eyebrow?: string })?.eyebrow) || defaults.whatIBuild.eyebrow,
+        title:
+          (whatIBuild?.intro as { title?: string })?.title ===
+          "Practical AI, data, and automation systems"
+            ? defaults.whatIBuild.title
+            : ((whatIBuild?.intro as { title?: string })?.title) || defaults.whatIBuild.title,
         description:
           ((whatIBuild?.intro as { description?: string })?.description) || defaults.whatIBuild.description,
         buildAreas: buildAreasData?.length ? buildAreasData : defaults.whatIBuild.buildAreas,

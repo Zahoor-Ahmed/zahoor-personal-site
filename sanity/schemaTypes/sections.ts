@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const whatIBuild = defineType({
   name: "whatIBuild",
-  title: "What I Build",
+  title: "Services",
   type: "document",
   fields: [
     defineField({ name: "intro", title: "Section intro", type: "sectionIntro" }),
@@ -15,7 +15,7 @@ export const whatIBuild = defineType({
     }),
   ],
   preview: {
-    prepare: () => ({ title: "What I Build" }),
+    prepare: () => ({ title: "Services" }),
   },
 });
 

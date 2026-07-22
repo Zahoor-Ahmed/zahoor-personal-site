@@ -1,6 +1,6 @@
 export const navLinks = [
+  { label: "Services", href: "#services" },
   { label: "Products", href: "#products" },
-  { label: "What I Build", href: "#what-i-build" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ] as const;
@@ -51,22 +51,19 @@ export const heroShowcaseContent = {
   taglines: [
     {
       icon: "chip" as const,
-      text: "Business workflows into AI systems",
-    },
-    {
-      icon: "rocket" as const,
-      text: "Practical automation for real execution",
+      text: "AI Strategy & Business Automation Leader",
     },
   ],
   headline: {
-    before: "AI systems that create ",
-    accent: "value",
+    before: "Turning business challenges into ",
+    accent: "AI-powered execution",
   },
   description:
-    "I build practical AI systems for SMB workflows, with a growing focus on telecom intelligence.",
+    "I help business leaders identify high-impact AI opportunities, automate critical workflows, and improve operations, growth, and decision-making.",
   valueOverlay: {
-    lead: "AI Systems Builder",
-    highlight: "SMB + Telecom",
+    name: "Engineer Zahoor Ahmed",
+    lead: "AI & Automation Advisor",
+    highlight: "Telecom + SMB",
   },
 } as const;
 
