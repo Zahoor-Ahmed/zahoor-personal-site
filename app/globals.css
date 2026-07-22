@@ -157,6 +157,9 @@ button {
 
 .contact-option-button {
   display: inline-flex;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
   min-height: 44px;
   width: 100%;
   align-items: center;
@@ -167,10 +170,6 @@ button {
   font-weight: 700;
   transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease,
     color 160ms ease, box-shadow 160ms ease;
-}
-
-.contact-option-button:hover {
-  transform: translateY(-1px);
 }
 
 .contact-option-button:active {
@@ -189,22 +188,43 @@ button {
   box-shadow: 0 9px 22px rgba(35, 139, 226, 0.25);
 }
 
-.contact-option-button-primary:hover {
-  border-color: #55b5ff;
-  background: #147aca;
-}
-
 .contact-option-button-outline {
   border: 1px solid #4a88c4;
   background: rgba(255, 255, 255, 0.3);
   color: #286ea8;
 }
 
-.contact-option-button-outline:hover {
+.contact-option-button-outline:active {
+  border-color: #55b5ff;
+  background: #147aca;
+  color: #ffffff;
+}
+
+.contact-option-button-confirmed,
+.contact-option-button-confirmed:hover,
+.contact-option-button-confirmed:active {
   border-color: #55b5ff;
   background: #147aca;
   color: #ffffff;
   box-shadow: 0 9px 22px rgba(20, 122, 202, 0.22);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-option-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .contact-option-button-primary:hover {
+    border-color: #55b5ff;
+    background: #147aca;
+  }
+
+  .contact-option-button-outline:hover {
+    border-color: #55b5ff;
+    background: #147aca;
+    color: #ffffff;
+    box-shadow: 0 9px 22px rgba(20, 122, 202, 0.22);
+  }
 }
 
 ::selection {

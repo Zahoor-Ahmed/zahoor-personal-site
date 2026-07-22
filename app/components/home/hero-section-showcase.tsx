@@ -167,7 +167,7 @@ export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
         <div className="hero-card-showcase" aria-label="Zahoor Ahmed hero section">
           <div className="hero-showcase-corner-lines" />
 
-          <div className="hero-showcase-content">
+          <div className="hero-showcase-content hero-showcase-content-top">
             <div className="hero-showcase-name-row">
               <span className="hero-showcase-orb" aria-hidden="true" />
               <h1 className="hero-showcase-name">{siteName}</h1>
@@ -182,7 +182,11 @@ export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
                 </div>
               ))}
             </div>
+          </div>
 
+          <ShowcasePortraitStage profile={profileImage} valueOverlay={heroShowcase.valueOverlay} />
+
+          <div className="hero-showcase-content hero-showcase-content-main">
             <div className="hero-showcase-blue-line" aria-hidden="true" />
 
             <h2 className="hero-showcase-hello hero-showcase-headline">
@@ -225,8 +229,6 @@ export function HeroSectionShowcase({ content }: HeroSectionShowcaseProps) {
               })}
             </div>
           </div>
-
-          <ShowcasePortraitStage profile={profileImage} valueOverlay={heroShowcase.valueOverlay} />
         </div>
       </div>
     </section>

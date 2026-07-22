@@ -48,13 +48,13 @@ export function AboutSection({ about }: AboutSectionProps) {
 
           <div className="grid gap-5 sm:grid-cols-3 lg:mt-14">
             {journeyCards.map((card) => (
-              <article key={card.title} className="flex min-h-[300px] flex-col rounded-[1.35rem] border border-[#cbd9e9] bg-white/10 px-6 py-8 shadow-[0_12px_32px_rgba(66,102,143,0.06)]">
+              <article key={card.title} className="flex min-h-[320px] flex-col rounded-[1.35rem] border border-[#cbd9e9] bg-white/10 px-6 pb-8 pt-6 shadow-[0_12px_32px_rgba(66,102,143,0.06)]">
                 <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#e5eef9] text-[#258cf1]">
                   <span className="block h-11 w-11 [&_svg]:h-full [&_svg]:w-full [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[1.8] [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]">
                     <JourneyIcon icon={card.icon} />
                   </span>
                 </div>
-                <h3 className="mt-6 text-[1.05rem] font-bold leading-6 text-slate-950">{card.title}</h3>
+                <h3 className="mt-4 text-[1.05rem] font-bold leading-6 text-slate-950">{card.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{card.description}</p>
                 <span className="mt-auto block h-0.5 w-11 bg-[#9dcdf8]" aria-hidden="true" />
               </article>

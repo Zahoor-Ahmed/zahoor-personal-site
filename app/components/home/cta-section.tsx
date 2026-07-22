@@ -1,7 +1,15 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type MouseEvent,
+  type PointerEvent,
+  type TouchEvent,
+} from "react";
 
 import type { HomeContent } from "@/app/lib/get-home-content";
 import {
@@ -23,6 +31,7 @@ declare global {
 
 type CtaSectionProps = { contact: HomeContent["contact"] };
 type ContactIconName = "calendar" | "whatsapp" | "email";
+type EmailCopyState = "idle" | "copying" | "copied" | "selected";
 
 const CALENDLY_SCRIPT_ID = "calendly-popup-widget";
 const CALENDLY_SCRIPT_URL = "https://assets.calendly.com/assets/external/widget.js";
@@ -65,11 +74,11 @@ function ensureCalendlyStylesheet() {
 }
 
 export function CtaSection({ contact }: CtaSectionProps) {
-  const [isCalendlyPending, setIsCalendlyPending] = useState(false);
   const [hasCalendlyError, setHasCalendlyError] = useState(false);
-  const [hasCopiedEmail, setHasCopiedEmail] = useState(false);
-  const pendingCalendlyOpen = useRef(false);
+  const [emailCopyState, setEmailCopyState] = useState<EmailCopyState>("idle");
   const copyResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastEmailTouchTime = useRef(0);
+  const emailInputRef = useRef<HTMLInputElement | null>(null);
 
   const whatsappHref = useMemo(() => {
     const number = CONTACT_CONFIG.whatsappNumber.replace(/\D/g, "");
@@ -77,20 +86,14 @@ export function CtaSection({ contact }: CtaSectionProps) {
     return `${baseUrl}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
   }, []);
 
-  const openCalendly = () => {
+  const openCalendly = (event: MouseEvent<HTMLAnchorElement>) => {
     if (window.Calendly) {
+      event.preventDefault();
       window.Calendly.initPopupWidget({ url: CONTACT_CONFIG.calendlyUrl });
-      setIsCalendlyPending(false);
       return;
     }
 
-    if (hasCalendlyError) {
-      window.open(CONTACT_CONFIG.calendlyUrl, "_blank", "noopener,noreferrer");
-      return;
-    }
-
-    pendingCalendlyOpen.current = true;
-    setIsCalendlyPending(true);
+    setHasCalendlyError(true);
   };
 
   useEffect(() => {
@@ -102,30 +105,66 @@ export function CtaSection({ contact }: CtaSectionProps) {
   }, []);
 
   const copyEmailAddress = async () => {
-    try {
-      await navigator.clipboard.writeText(CONTACT_CONFIG.emailAddress);
-    } catch {
-      const input = document.createElement("textarea");
-      input.value = CONTACT_CONFIG.emailAddress;
-      input.style.position = "fixed";
-      input.style.opacity = "0";
-      document.body.appendChild(input);
-      input.select();
-      document.execCommand("copy");
-      input.remove();
+    setEmailCopyState("copying");
+
+    let didCopy = false;
+
+    if (navigator.clipboard?.writeText) {
+      try {
+        await Promise.race([
+          navigator.clipboard.writeText(CONTACT_CONFIG.emailAddress),
+          new Promise<never>((_, reject) =>
+            setTimeout(() => reject(new Error("Clipboard request timed out")), 1200),
+          ),
+        ]);
+        didCopy = true;
+      } catch {
+        didCopy = false;
+      }
     }
 
-    setHasCopiedEmail(true);
+    if (!didCopy) {
+      const copyField = document.createElement("textarea");
+      copyField.value = CONTACT_CONFIG.emailAddress;
+      copyField.setAttribute("readonly", "");
+      copyField.style.position = "fixed";
+      copyField.style.left = "-9999px";
+      copyField.style.top = "0";
+      document.body.appendChild(copyField);
+
+      try {
+        copyField.focus({ preventScroll: true });
+        copyField.select();
+        didCopy = document.execCommand("copy");
+      } catch {
+        didCopy = false;
+      } finally {
+        copyField.remove();
+      }
+    }
+
+    setEmailCopyState(didCopy ? "copied" : "selected");
     if (copyResetTimer.current) clearTimeout(copyResetTimer.current);
-    copyResetTimer.current = setTimeout(() => setHasCopiedEmail(false), 2500);
+    copyResetTimer.current = setTimeout(() => {
+      setEmailCopyState("idle");
+    }, 4000);
   };
 
-  const handleCalendlyReady = () => {
-    if (pendingCalendlyOpen.current && window.Calendly) {
-      window.Calendly.initPopupWidget({ url: CONTACT_CONFIG.calendlyUrl });
-      pendingCalendlyOpen.current = false;
-      setIsCalendlyPending(false);
-    }
+  const showEmailTouchFeedback = (
+    event: PointerEvent<HTMLButtonElement> | TouchEvent<HTMLButtonElement>,
+  ) => {
+    event.currentTarget.textContent = "Copying...";
+    setEmailCopyState("copying");
+  };
+
+  const copyEmailOnTouchEnd = () => {
+    lastEmailTouchTime.current = Date.now();
+    void copyEmailAddress();
+  };
+
+  const copyEmailOnClick = () => {
+    if (Date.now() - lastEmailTouchTime.current < 1000) return;
+    void copyEmailAddress();
   };
 
   const contactOptions = [
@@ -138,15 +177,16 @@ export function CtaSection({ contact }: CtaSectionProps) {
       description:
         "Schedule a short call to discuss your requirements, current challenges, and possible next steps.",
       action: (
-        <button
-          type="button"
+        <a
+          href={CONTACT_CONFIG.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={openCalendly}
           className="contact-option-button contact-option-button-primary"
           aria-label="Choose a time for a discovery call"
-          aria-busy={isCalendlyPending}
         >
-          {isCalendlyPending ? "Opening Calendly..." : "Choose a Time"}
-        </button>
+          Choose a Time
+        </a>
       ),
     },
     {
@@ -179,19 +219,43 @@ export function CtaSection({ contact }: CtaSectionProps) {
         "Copy my email address and contact me using your preferred email service.",
       action: (
         <div>
-          <p className="mb-3 break-all text-sm font-semibold text-slate-800">
-            {CONTACT_CONFIG.emailAddress}
-          </p>
+          <input
+            ref={emailInputRef}
+            type="text"
+            value={CONTACT_CONFIG.emailAddress}
+            readOnly
+            aria-label="Zahoor's email address"
+            className="mb-3 w-full border-0 bg-transparent p-0 text-sm font-semibold text-slate-800 outline-none selection:bg-sky-300"
+          />
           <button
             type="button"
-            onClick={copyEmailAddress}
-            className="contact-option-button contact-option-button-outline"
+            onPointerDown={showEmailTouchFeedback}
+            onTouchStart={showEmailTouchFeedback}
+            onTouchEnd={copyEmailOnTouchEnd}
+            onClick={copyEmailOnClick}
+            className={`contact-option-button contact-option-button-outline ${
+              emailCopyState === "copying" || emailCopyState === "copied"
+                ? "contact-option-button-confirmed"
+                : ""
+            }`}
             aria-label="Copy Zahoor's email address"
           >
-            {hasCopiedEmail ? "Email Copied" : "Copy Email Address"}
+            {emailCopyState === "copying"
+              ? "Copying..."
+              : emailCopyState === "copied"
+                ? "Email Copied"
+                : emailCopyState === "selected"
+                  ? "Email Selected"
+                  : "Copy Email Address"}
           </button>
           <span className="sr-only" role="status" aria-live="polite">
-            {hasCopiedEmail ? "Email address copied to clipboard" : ""}
+            {emailCopyState === "copying"
+              ? "Copying email..."
+              : emailCopyState === "copied"
+                ? "Email address copied"
+                : emailCopyState === "selected"
+                  ? "Email selected - choose Copy from your browser menu"
+                  : ""}
           </span>
         </div>
       ),
@@ -203,15 +267,18 @@ export function CtaSection({ contact }: CtaSectionProps) {
       <Script
         id={CALENDLY_SCRIPT_ID}
         src={CALENDLY_SCRIPT_URL}
-        strategy="lazyOnload"
-        onLoad={handleCalendlyReady}
-        onReady={handleCalendlyReady}
+        strategy="afterInteractive"
+        onReady={() => setHasCalendlyError(false)}
         onError={() => {
           setHasCalendlyError(true);
-          pendingCalendlyOpen.current = false;
-          setIsCalendlyPending(false);
         }}
       />
+
+      {hasCalendlyError ? (
+        <p className="sr-only" role="status" aria-live="polite">
+          Calendly could not open as a popup. The booking page will open in a new tab.
+        </p>
+      ) : null}
 
       <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-400`}>
         <div className="section-card overflow-hidden rounded-[1.75rem] px-7 pb-9 shadow-[var(--section-card-shadow)] sm:px-9 sm:pb-10">
