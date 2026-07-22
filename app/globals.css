@@ -195,9 +195,9 @@ button {
 }
 
 .contact-option-button-outline {
-  border: 1px solid #71bff1;
-  background: rgba(9, 30, 55, 0.12);
-  color: #f0f9ff;
+  border: 1px solid #4a88c4;
+  background: rgba(255, 255, 255, 0.3);
+  color: #286ea8;
 }
 
 .contact-option-button-outline:hover {

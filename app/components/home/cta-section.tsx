@@ -131,9 +131,9 @@ export function CtaSection({ contact }: CtaSectionProps) {
   const contactOptions = [
     {
       icon: "calendar" as const,
-      cardClassName: "bg-[linear-gradient(145deg,rgba(35,86,137,0.96),rgba(23,56,95,0.9))]",
+      cardClassName: "bg-[linear-gradient(145deg,#e2f0fa_0%,#c7ddef_100%)]",
       iconClassName:
-        "border-[#77c7ff] bg-[linear-gradient(145deg,#25689d,#19476f)] text-[#b4e4ff] shadow-[0_10px_24px_rgba(45,156,230,0.2)]",
+        "border-[#80b8e5] bg-[linear-gradient(145deg,#d9ecfb,#bfdcf3)] text-[#347fb9] shadow-[0_8px_20px_rgba(63,127,184,0.14)]",
       title: "Book a Discovery Call",
       description:
         "Schedule a short call to discuss your requirements, current challenges, and possible next steps.",
@@ -151,9 +151,9 @@ export function CtaSection({ contact }: CtaSectionProps) {
     },
     {
       icon: "whatsapp" as const,
-      cardClassName: "bg-[linear-gradient(145deg,rgba(27,78,91,0.94),rgba(23,56,95,0.9))]",
+      cardClassName: "bg-[linear-gradient(145deg,#def1ed_0%,#c5dfe4_100%)]",
       iconClassName:
-        "border-[#69d7ba] bg-[linear-gradient(145deg,#16846d,#135b54)] text-[#b9ffea] shadow-[0_10px_24px_rgba(16,185,129,0.18)]",
+        "border-[#75c7b3] bg-[linear-gradient(145deg,#d6f1e9,#bfe2da)] text-[#24856f] shadow-[0_8px_20px_rgba(36,133,111,0.13)]",
       title: "Message Me on WhatsApp",
       description:
         "Send a direct message for a quick question, project inquiry, or initial discussion.",
@@ -171,15 +171,15 @@ export function CtaSection({ contact }: CtaSectionProps) {
     },
     {
       icon: "email" as const,
-      cardClassName: "bg-[linear-gradient(145deg,rgba(27,72,112,0.95),rgba(23,56,95,0.9))]",
+      cardClassName: "bg-[linear-gradient(145deg,#e0f0f5_0%,#c7deea_100%)]",
       iconClassName:
-        "border-[#75d7ee] bg-[linear-gradient(145deg,#167e9d,#175673)] text-[#c5f5ff] shadow-[0_10px_24px_rgba(34,211,238,0.17)]",
+        "border-[#7ec1d4] bg-[linear-gradient(145deg,#d9f0f5,#c1e0e9)] text-[#317f98] shadow-[0_8px_20px_rgba(49,127,152,0.13)]",
       title: "Email Me",
       description:
         "Copy my email address and contact me using your preferred email service.",
       action: (
         <div>
-          <p className="mb-3 break-all text-sm font-semibold text-white">
+          <p className="mb-3 break-all text-sm font-semibold text-slate-800">
             {CONTACT_CONFIG.emailAddress}
           </p>
           <button
@@ -214,24 +214,24 @@ export function CtaSection({ contact }: CtaSectionProps) {
       />
 
       <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-400`}>
-        <div className="overflow-hidden rounded-[1.75rem] border border-[#315b86] bg-[linear-gradient(145deg,#122d4d_0%,#193d67_55%,#23558a_100%)] px-7 py-9 text-white shadow-[0_24px_70px_rgba(30,64,105,0.18)] sm:px-9 sm:py-10">
-          <div className="max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#7dceff] sm:text-[0.95rem]">
+        <div className="section-card overflow-hidden rounded-[1.75rem] px-7 pb-9 shadow-[var(--section-card-shadow)] sm:px-9 sm:pb-10">
+          <div className="-mx-7 rounded-t-[1.7rem] border-b border-[#4f7da8] bg-[linear-gradient(135deg,#173b62_0%,#245b8d_100%)] px-7 py-8 text-white sm:-mx-9 sm:px-9 sm:py-9">
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#8bd1ff] sm:text-[0.95rem]">
               {contact.eyebrow}
             </p>
             <h2 className="mt-4 text-[1.75rem] font-semibold leading-tight text-white sm:text-[2rem]">
               {contact.title}
             </h2>
-            <p className="mt-4 text-sm leading-6 text-[#d3e2f2] sm:text-base sm:leading-7">
+            <p className="mt-4 max-w-3xl text-sm leading-6 text-[#d8e7f4] sm:text-base sm:leading-7">
               {contact.description}
             </p>
           </div>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="mt-7 grid gap-5 md:grid-cols-3">
             {contactOptions.map((option) => (
               <article
                 key={option.title}
-                className={`flex min-h-[290px] flex-col rounded-[1.35rem] border border-[#4774a1] p-6 shadow-[0_14px_30px_rgba(9,30,55,0.16)] ${option.cardClassName}`}
+                className={`flex min-h-[290px] flex-col rounded-[1.35rem] border border-[rgba(74,136,196,0.46)] p-6 shadow-[0_14px_30px_rgba(66,102,143,0.11)] ${option.cardClassName}`}
               >
                 <div
                   className={`flex h-14 w-14 items-center justify-center rounded-full border ${option.iconClassName}`}
@@ -240,8 +240,8 @@ export function CtaSection({ contact }: CtaSectionProps) {
                     <ContactIcon name={option.icon} />
                   </span>
                 </div>
-                <h3 className="mt-5 text-lg font-bold leading-6 text-white">{option.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#c7d8e9]">{option.description}</p>
+                <h3 className="mt-5 text-lg font-bold leading-6 text-slate-950">{option.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{option.description}</p>
                 <div className="mt-auto pt-6">{option.action}</div>
               </article>
             ))}
