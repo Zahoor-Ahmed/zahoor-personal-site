@@ -17,7 +17,7 @@ const iconBoxStyle = {
 
 const iconStrokeProps = {
   stroke: "currentColor",
-  strokeWidth: 1.7,
+  strokeWidth: 1.65,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
 };
@@ -25,7 +25,7 @@ const iconStrokeProps = {
 function IconFrame({ children }: { children: ReactNode }) {
   return (
     <div
-      className="flex h-14 w-14 items-center justify-center rounded-2xl border"
+      className="flex h-20 w-20 shrink-0 items-center justify-center rounded-[18px] border"
       style={iconBoxStyle}
     >
       {children}
@@ -35,68 +35,46 @@ function IconFrame({ children }: { children: ReactNode }) {
 
 function AIProductIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="1.8" fill="currentColor" fillOpacity="0.18" />
-      <path d="M12 5.2v2.1M12 16.7v2.1M5.2 12h2.1M16.7 12h2.1" {...iconStrokeProps} />
-      <path d="M7.3 7.3 8.8 8.8M15.2 15.2l1.5 1.5M16.7 7.3l-1.5 1.5M8.8 15.2l-1.5 1.5" {...iconStrokeProps} />
-      <path
-        d="m12 8.2 1.05 2.25 2.45.28-1.82 1.67.48 2.43L12 13.62l-2.16 1.23.48-2.43-1.82-1.67 2.45-.28L12 8.2Z"
-        {...iconStrokeProps}
-      />
+    <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none" aria-hidden="true">
+      <path d="M24 10V6" {...iconStrokeProps} />
+      <circle cx="24" cy="4.5" r="2" {...iconStrokeProps} />
+      <rect x="10" y="15" width="28" height="22" rx="9" {...iconStrokeProps} />
+      <path d="M10 22H7.5a3.5 3.5 0 0 0-3.5 3.5v3A3.5 3.5 0 0 0 7.5 32H10M38 22h2.5a3.5 3.5 0 0 1 3.5 3.5v3a3.5 3.5 0 0 1-3.5 3.5H38" {...iconStrokeProps} />
+      <rect x="16" y="21" width="16" height="10" rx="5" {...iconStrokeProps} />
+      <circle cx="21" cy="26" r="1.2" fill="currentColor" />
+      <circle cx="27" cy="26" r="1.2" fill="currentColor" />
+      <path d="M34 12V5h10v8h-6l-3.5 3v-4H34Z" {...iconStrokeProps} />
+      <path d="M37 8h4M37 10.5h2.5" {...iconStrokeProps} />
     </svg>
   );
 }
 
 function AutomationSystemIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
-      <rect x="3.25" y="4" width="5.5" height="5.5" rx="1.5" {...iconStrokeProps} />
-      <rect x="15.25" y="4" width="5.5" height="5.5" rx="1.5" {...iconStrokeProps} />
-      <rect x="9.25" y="14.5" width="5.5" height="5.5" rx="1.5" {...iconStrokeProps} />
-      <path d="M8.75 6.75h2.5c1.05 0 1.9.85 1.9 1.9v2.05" {...iconStrokeProps} />
-      <path d="M15.25 6.75h-2.5c-1.05 0-1.9.85-1.9 1.9v2.05" {...iconStrokeProps} />
-      <path d="M12 10.7v1.8" {...iconStrokeProps} />
-      <path d="m10.6 11.15 1.4 1.35 1.4-1.35" {...iconStrokeProps} />
+    <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none" aria-hidden="true">
+      <circle cx="19" cy="17" r="9" {...iconStrokeProps} />
+      <circle cx="19" cy="17" r="3.5" {...iconStrokeProps} />
+      <path d="M19 5v3M19 26v3M7 17h3M28 17h3M10.5 8.5l2.2 2.2M25.3 23.3l2.2 2.2M27.5 8.5l-2.2 2.2M12.7 23.3l-2.2 2.2" {...iconStrokeProps} />
+      <path d="M20 29v11h17" {...iconStrokeProps} />
+      <path d="M20 34h9v-8h9" {...iconStrokeProps} />
+      <circle cx="20" cy="41" r="2.5" {...iconStrokeProps} />
+      <circle cx="30" cy="34" r="2.5" {...iconStrokeProps} />
+      <circle cx="39" cy="26" r="2.5" {...iconStrokeProps} />
+      <circle cx="38" cy="41" r="2.5" {...iconStrokeProps} />
     </svg>
   );
 }
 
 function AnalyticsTelecomIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
-      <path d="M4.25 18.75V6.25M4.25 18.75H19.75" {...iconStrokeProps} />
-      <rect
-        x="7"
-        y="12"
-        width="2.75"
-        height="6.75"
-        rx="0.9"
-        fill="currentColor"
-        fillOpacity="0.16"
-        {...iconStrokeProps}
-      />
-      <rect
-        x="11.15"
-        y="9"
-        width="2.75"
-        height="9.75"
-        rx="0.9"
-        fill="currentColor"
-        fillOpacity="0.22"
-        {...iconStrokeProps}
-      />
-      <rect
-        x="15.3"
-        y="13.2"
-        width="2.75"
-        height="5.55"
-        rx="0.9"
-        fill="currentColor"
-        fillOpacity="0.14"
-        {...iconStrokeProps}
-      />
-      <path d="M8.35 8.1a4.6 4.6 0 0 1 6.9 0" {...iconStrokeProps} />
-      <path d="M10.05 9.85a2.25 2.25 0 0 1 3.5 0" {...iconStrokeProps} />
+    <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none" aria-hidden="true">
+      <path d="M7 40h35" {...iconStrokeProps} />
+      <rect x="10" y="31" width="5" height="9" {...iconStrokeProps} />
+      <rect x="19" y="26" width="5" height="14" {...iconStrokeProps} />
+      <rect x="28" y="20" width="5" height="20" {...iconStrokeProps} />
+      <rect x="37" y="13" width="5" height="27" {...iconStrokeProps} />
+      <path d="M9 22c8 0 14-2 19-6 4-3 7-7 11-13" {...iconStrokeProps} />
+      <path d="m33 5 7-2 1 7" {...iconStrokeProps} />
     </svg>
   );
 }

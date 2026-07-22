@@ -75,10 +75,10 @@ export const heroHighlights = [
 ] as const;
 
 export const aboutIntro = {
-  title: "From telecom data to practical AI systems",
+  title: "My journey from telecom data to business-focused AI systems",
   paragraphs: [
-    "My background is in data analytics, reporting, and telecom customer experience, where the work was about turning complex information into clearer decisions.",
-    "Now I'm applying that same practical mindset to AI products, automation workflows, and intelligence systems that support real business execution.",
+    "My background is in telecom analytics, reporting, and customer experience. Working with complex operational data taught me how businesses struggle with manual work, fragmented workflows, and decision bottlenecks.",
+    "Today I apply that experience to build practical AI, automation, and analytics systems that solve real operational problems for telecom companies and SMBs.",
   ],
   readMoreParagraphs: [
     "Along the way, I've worked on reporting pipelines, customer experience metrics, and internal tools that help teams act on data instead of just viewing it.",
@@ -106,22 +106,31 @@ export const aboutPillars = [
 
 export const buildAreas = [
   {
-    title: "AI Products",
+    title: "AI Assistants & Copilots",
     icon: "ai",
     description:
-      "Focused tools and assistants built around real use cases, user needs, and practical workflows.",
+      "Custom chatbots, intelligent agents, and copilots trained on your business knowledge, processes, and data. Built to support customers, assist employees, and take repetitive work off your team.",
+    ctaLabel: "Let’s Discuss",
+    ctaHref: "#contact",
+    ctaVariant: "outline",
   },
   {
-    title: "Automation Systems",
+    title: "Business Workflow Automation",
     icon: "automation",
     description:
-      "Processes that reduce repetitive work, improve consistency, and turn manual tasks into reliable workflows.",
+      "AI and non-AI automation that connects your tools, removes manual tasks, reduces errors, and keeps important business workflows running reliably.",
+    ctaLabel: "Let’s Discuss",
+    ctaHref: "#contact",
+    ctaVariant: "outline",
   },
   {
-    title: "Analytics & Telecom",
+    title: "Revenue & Operations Automation",
     icon: "analytics",
     description:
-      "Decision systems built from real data, focused on insights, customer experience, and telecom performance.",
+      "Automation and analytics designed to improve lead conversion, customer retention, operational visibility, and telecom performance.",
+    ctaLabel: "Let’s Discuss",
+    ctaHref: "#contact",
+    ctaVariant: "outline",
   },
 ] as const;
 

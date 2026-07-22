@@ -69,6 +69,9 @@ export type HomeContent = {
       title: string;
       icon: "ai" | "automation" | "analytics";
       description: string;
+      ctaLabel: string;
+      ctaHref: string;
+      ctaVariant: "outline" | "primary";
     }>;
   };
   about: {
@@ -122,9 +125,9 @@ const defaults: HomeContent = {
   },
   whatIBuild: {
     eyebrow: "Services",
-    title: "How I help businesses use AI, data, and automation",
+    title: "Custom AI and automation solutions that reduce workload and drive growth",
     description:
-      "I build useful digital systems that help people reduce manual work, make clearer decisions, and move ideas from concept to execution. My long-term direction is applying this work at the intersection of AI, analytics, and telecom systems.",
+      "I design tailored AI and non-AI automation solutions for telecom companies and SMBs. I help businesses eliminate repetitive work, improve efficiency, serve customers faster, and automate workflows that directly support revenue growth.",
     buildAreas: [...buildAreas],
   },
   about: {
@@ -153,6 +156,27 @@ const defaults: HomeContent = {
 const legacyShowcaseDescription =
   "I build practical AI and automation systems for SMB workflows, with a growing focus on telecom intelligence.";
 
+const legacyAboutTitles = new Set([
+  "From telecom data to practical AI systems",
+]);
+
+const legacyAboutParagraphStarts = [
+  "My background is in data analytics, reporting, and telecom customer experience",
+  "Now I'm applying that same practical mindset",
+];
+
+const legacyBuildAreaTitles = new Set([
+  "AI Products",
+  "Automation Systems",
+  "Analytics & Telecom",
+]);
+
+const legacyServiceCtaLabels = new Set([
+  "Discuss an AI Assistant",
+  "Automate a Workflow",
+  "Explore Growth Automation",
+]);
+
 const navLinkOrder = new Map([
   ["#services", 0],
   ["#products", 1],
@@ -174,6 +198,16 @@ function orderNavLinks(links: NavLink[]): NavLink[] {
       (navLinkOrder.get(first.href) ?? Number.MAX_SAFE_INTEGER) -
       (navLinkOrder.get(second.href) ?? Number.MAX_SAFE_INTEGER),
   );
+}
+
+function normalizeHeroButtons(buttons: HeroButton[]): HeroButton[] {
+  return buttons.map((button) => {
+    const normalizedLabel = button.label.trim().toLowerCase();
+    const linksToConsultation =
+      button.icon === "consultation" || normalizedLabel.includes("consultation");
+
+    return linksToConsultation ? { ...button, href: "#contact" } : button;
+  });
 }
 
 type SanityProfileImage = {
@@ -228,6 +262,32 @@ export async function getHomeContent(): Promise<HomeContent> {
     const aboutHighlightsData = aboutPage?.highlights as HomeContent["about"]["highlights"] | undefined;
     const aboutPillarsData = aboutPage?.pillars as string[] | undefined;
     const contactLinks = contactSection?.links as NavLink[] | undefined;
+    const resolvedAboutParagraphs =
+      aboutParagraphs?.length &&
+      !aboutParagraphs.some((paragraph) =>
+        legacyAboutParagraphStarts.some((legacyStart) => paragraph.startsWith(legacyStart)),
+      )
+        ? aboutParagraphs
+        : defaults.about.paragraphs;
+    const resolvedBuildAreas = buildAreasData?.length
+      ? buildAreasData.map((area, index) => {
+          const fallbackArea = defaults.whatIBuild.buildAreas[index] ?? defaults.whatIBuild.buildAreas[0];
+
+          if (legacyBuildAreaTitles.has(area.title)) {
+            return fallbackArea;
+          }
+
+          return {
+            ...area,
+            ctaLabel:
+              !area.ctaLabel || legacyServiceCtaLabels.has(area.ctaLabel)
+                ? fallbackArea.ctaLabel
+                : area.ctaLabel,
+            ctaHref: "#contact",
+            ctaVariant: "outline" as const,
+          };
+        })
+      : defaults.whatIBuild.buildAreas;
     const heroVariant =
       siteSettings?.heroVariant === "classic" || siteSettings?.heroVariant === "showcase"
         ? siteSettings.heroVariant
@@ -237,12 +297,13 @@ export async function getHomeContent(): Promise<HomeContent> {
       heroVariant,
       siteName: (siteSettings?.siteName as string) || defaults.siteName,
       navLinks: orderNavLinks(siteNavLinks?.length ? siteNavLinks : defaults.navLinks),
-      heroButtons:
+      heroButtons: normalizeHeroButtons(
         heroVariant === "showcase" && showcaseHeroButtons?.length
           ? showcaseHeroButtons
           : siteHeroButtons?.length
             ? siteHeroButtons
             : defaults.heroButtons,
+      ),
       profileImage: resolveProfileImage(
         siteSettings?.profileImage as SanityProfileImage | undefined,
         siteSettings?.profileImageSrc as string | undefined,
@@ -288,18 +349,26 @@ export async function getHomeContent(): Promise<HomeContent> {
             ? defaults.whatIBuild.eyebrow
             : ((whatIBuild?.intro as { eyebrow?: string })?.eyebrow) || defaults.whatIBuild.eyebrow,
         title:
-          (whatIBuild?.intro as { title?: string })?.title ===
-          "Practical AI, data, and automation systems"
+          [
+            "Practical AI, data, and automation systems",
+            "How I help businesses use AI, data, and automation",
+          ].includes((whatIBuild?.intro as { title?: string })?.title || "")
             ? defaults.whatIBuild.title
             : ((whatIBuild?.intro as { title?: string })?.title) || defaults.whatIBuild.title,
         description:
-          ((whatIBuild?.intro as { description?: string })?.description) || defaults.whatIBuild.description,
-        buildAreas: buildAreasData?.length ? buildAreasData : defaults.whatIBuild.buildAreas,
+          (whatIBuild?.intro as { description?: string })?.description ===
+          "I build useful digital systems that help people reduce manual work, make clearer decisions, and move ideas from concept to execution. My long-term direction is applying this work at the intersection of AI, analytics, and telecom systems."
+            ? defaults.whatIBuild.description
+            : ((whatIBuild?.intro as { description?: string })?.description) ||
+              defaults.whatIBuild.description,
+        buildAreas: resolvedBuildAreas,
       },
       about: {
         eyebrow: (aboutPage?.eyebrow as string) || defaults.about.eyebrow,
-        title: (aboutPage?.title as string) || defaults.about.title,
-        paragraphs: aboutParagraphs?.length ? aboutParagraphs : defaults.about.paragraphs,
+        title: legacyAboutTitles.has((aboutPage?.title as string) || "")
+          ? defaults.about.title
+          : (aboutPage?.title as string) || defaults.about.title,
+        paragraphs: resolvedAboutParagraphs,
         readMoreParagraphs: aboutReadMore?.length ? aboutReadMore : defaults.about.readMoreParagraphs,
         highlights: aboutHighlightsData?.length ? aboutHighlightsData : defaults.about.highlights,
         pillarsHeading: (aboutPage?.pillarsHeading as string) || defaults.about.pillarsHeading,

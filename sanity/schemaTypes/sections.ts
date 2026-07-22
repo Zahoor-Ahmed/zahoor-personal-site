@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const whatIBuild = defineType({
   name: "whatIBuild",
@@ -10,7 +10,7 @@ export const whatIBuild = defineType({
       name: "buildAreas",
       title: "Build area cards",
       type: "array",
-      of: [{ type: "buildArea" }],
+      of: [defineArrayMember({ type: "buildArea" })],
       validation: (rule) => rule.max(3),
     }),
   ],
@@ -30,12 +30,14 @@ export const aboutPage = defineType({
       name: "paragraphs",
       title: "Intro paragraphs",
       type: "array",
+      description: "Add separate items for separate paragraphs, or use a blank line for a visible line break.",
       of: [{ type: "text" }],
     }),
     defineField({
       name: "readMoreParagraphs",
       title: "Read more paragraphs",
       type: "array",
+      description: "Add separate items for separate paragraphs, or use a blank line for a visible line break.",
       of: [{ type: "text" }],
     }),
     defineField({

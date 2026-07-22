@@ -128,7 +128,37 @@ export const buildArea = defineType({
       },
     }),
     defineField({ name: "description", title: "Description", type: "text", rows: 3 }),
+    defineField({
+      name: "ctaLabel",
+      title: "Button label",
+      type: "string",
+    }),
+    defineField({
+      name: "ctaHref",
+      title: "Button destination",
+      type: "string",
+      description: "Use #contact, another section anchor, or a full https:// URL.",
+    }),
+    defineField({
+      name: "ctaVariant",
+      title: "Button style",
+      type: "string",
+      options: {
+        list: [
+          { title: "Outline", value: "outline" },
+          { title: "Primary", value: "primary" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "outline",
+    }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "ctaLabel",
+    },
+  },
 });
 
 export const aboutHighlight = defineType({

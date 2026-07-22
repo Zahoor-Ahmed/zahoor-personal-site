@@ -1,0 +1,246 @@
+.services-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.95fr) minmax(0, 2.55fr);
+  gap: 18px;
+  padding: 46px 22px 42px 36px;
+  border-radius: 30px;
+}
+
+.services-intro {
+  position: relative;
+  z-index: 1;
+  padding-top: 2px;
+}
+
+.services-eyebrow {
+  color: #2384e8;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.services-eyebrow-line,
+.services-card-line {
+  display: block;
+  height: 2px;
+  border-radius: 999px;
+  background: #258cf1;
+}
+
+.services-eyebrow-line {
+  width: 49px;
+  margin-top: 12px;
+}
+
+.services-intro h2 {
+  max-width: 275px;
+  margin-top: 14px;
+  color: #07122b;
+  font-size: 1.72rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.services-description {
+  max-width: 278px;
+  margin-top: 22px;
+  color: #48617f;
+  font-size: 0.91rem;
+  line-height: 1.55;
+}
+
+.services-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.services-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 428px;
+  flex-direction: column;
+  padding: 16px 16px 17px;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.045);
+}
+
+.services-card-topline {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.services-card-number {
+  color: #3b91eb;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.services-card h3 {
+  position: relative;
+  z-index: 1;
+  margin-top: 15px;
+  color: #07122b;
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.18;
+}
+
+.services-card-line {
+  position: relative;
+  z-index: 1;
+  width: 52px;
+  margin-top: 12px;
+}
+
+.services-card-description {
+  position: relative;
+  z-index: 1;
+  margin-top: 14px;
+  color: #49617e;
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
+.services-card-cta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  min-height: 41px;
+  margin-top: auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1.5px solid #258cf1;
+  border-radius: 999px;
+  color: #147dde;
+  background: rgba(235, 245, 255, 0.34);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.services-card-cta svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.services-card-cta:hover {
+  color: #fff;
+  background: #258cf1;
+  transform: translateY(-1px);
+}
+
+.services-shell-arcs,
+.services-card-arcs {
+  position: absolute;
+  pointer-events: none;
+}
+
+.services-shell-arcs {
+  left: -33px;
+  bottom: -42px;
+  width: 152px;
+  height: 152px;
+}
+
+.services-card-arcs {
+  right: -34px;
+  bottom: -36px;
+  width: 112px;
+  height: 112px;
+}
+
+.services-shell-arcs span,
+.services-card-arcs span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+}
+
+.services-shell-arcs span:first-child {
+  width: 152px;
+  height: 152px;
+}
+
+.services-shell-arcs span:last-child {
+  width: 92px;
+  height: 92px;
+}
+
+.services-card-arcs span:first-child {
+  width: 112px;
+  height: 112px;
+}
+
+.services-card-arcs span:last-child {
+  width: 68px;
+  height: 68px;
+}
+
+@media (max-width: 1020px) {
+  .services-shell {
+    grid-template-columns: 1fr;
+    padding: 34px 28px 32px;
+  }
+
+  .services-intro h2,
+  .services-description {
+    max-width: 700px;
+  }
+
+  .services-description {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 760px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-card {
+    min-height: 0;
+  }
+
+  .services-card-cta {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-shell {
+    gap: 24px;
+    padding: 28px 18px 24px;
+    border-radius: 24px;
+  }
+
+  .services-intro h2 {
+    font-size: 1.55rem;
+  }
+
+  .services-card {
+    padding: 16px;
+  }
+}
