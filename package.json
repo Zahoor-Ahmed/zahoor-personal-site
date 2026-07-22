@@ -8,30 +8,39 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "cf:build": "opennextjs-cloudflare build",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "studio:dev": "sanity dev",
+    "studio:build": "sanity build",
+    "studio:deploy": "sanity deploy --url zahoor-ahmed-studio --yes",
     "seed:projects": "sanity dataset import sanity/seed/projects.ndjson production --replace",
     "seed:home": "sanity exec sanity/seed/seed-home.ts --with-user-token",
     "seed:home:text": "sanity dataset import sanity/seed/home-content.ndjson production --replace",
-    "studio:cors": "sanity cors add http://localhost:3000 --credentials && sanity cors add http://127.0.0.1:3000 --credentials",
+    "studio:cors": "sanity cors add http://localhost:3333 --credentials && sanity cors add http://127.0.0.1:3333 --credentials",
     "studio:cors:list": "sanity cors list"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.2",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.31.1",
-    "next": "16.2.3",
-    "next-sanity": "^13.1.0",
+    "next": "^16.2.11",
+    "next-sanity": "^13.1.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "sanity": "^5.31.1",
-    "styled-components": "^6.4.2"
+    "styled-components": "^6.4.4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20",
-    "@types/react": "^19",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.3",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "eslint-config-next": "^16.2.11",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5",
+    "wrangler": "^4.113.0"
   }
 }

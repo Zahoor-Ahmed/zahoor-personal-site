@@ -1,8 +1,4 @@
-'use client'
-
-/**
- * This configuration is used to for the Sanity Studio that’s mounted on the `\app\studio\[[...tool]]\page.tsx` route
- */
+/** Standalone Sanity Studio configuration for local and hosted authoring. */
 
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
@@ -15,7 +11,6 @@ import {singletonActions, singletonTypes} from './sanity/singletons'
 import {structure} from './sanity/structure'
 
 export default defineConfig({
-  basePath: '/studio',
   projectId,
   dataset,
   apiVersion,
