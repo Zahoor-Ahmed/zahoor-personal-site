@@ -165,9 +165,9 @@ export const featuredProjects = [
 ] as const;
 
 export const ctaContent = {
-  title: "Looking to turn an idea or workflow into a working system",
+  title: "Let’s discuss what you want to improve",
   description:
-    "I'm open to selected collaborations around AI products, automation workflows, analytics systems, and telecom-focused intelligence.",
+    "Whether you need an AI assistant, workflow automation, analytics solution, or help turning a business process into a practical system, choose the contact option that works best for you.",
 } as const;
 
 export const ctaLinks = [

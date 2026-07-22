@@ -10,6 +10,7 @@ import {
   sectionCardText,
 } from "@/app/components/home/section-layout";
 import { ProjectVisual } from "@/app/components/home/visuals/project-visual";
+import { ProductComingSoonButton } from "@/app/components/home/product-coming-soon-button";
 import { client } from "@/sanity/lib/client";
 import {
   featuredProjectsQuery,
@@ -90,12 +91,7 @@ export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
                   ))}
                 </div>
 
-                <a
-                  href={project.href}
-                  className="mt-4 inline-flex items-center text-sm font-semibold text-sky-600 transition hover:text-sky-700"
-                >
-                  View product →
-                </a>
+                <ProductComingSoonButton productTitle={project.title} />
               </div>
             </article>
           ))}

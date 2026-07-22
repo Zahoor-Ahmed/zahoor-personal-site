@@ -156,6 +156,14 @@ const defaults: HomeContent = {
 const legacyShowcaseDescription =
   "I build practical AI and automation systems for SMB workflows, with a growing focus on telecom intelligence.";
 
+const legacyContactTitles = new Set([
+  "Looking to turn an idea or workflow into a working system",
+]);
+
+const legacyContactDescriptions = new Set([
+  "I'm open to selected collaborations around AI products, automation workflows, analytics systems, and telecom-focused intelligence.",
+]);
+
 const legacyAboutTitles = new Set([
   "From telecom data to practical AI systems",
 ]);
@@ -384,8 +392,12 @@ export async function getHomeContent(): Promise<HomeContent> {
       },
       contact: {
         eyebrow: (contactSection?.eyebrow as string) || defaults.contact.eyebrow,
-        title: (contactSection?.title as string) || defaults.contact.title,
-        description: (contactSection?.description as string) || defaults.contact.description,
+        title: legacyContactTitles.has((contactSection?.title as string) || "")
+          ? defaults.contact.title
+          : (contactSection?.title as string) || defaults.contact.title,
+        description: legacyContactDescriptions.has((contactSection?.description as string) || "")
+          ? defaults.contact.description
+          : (contactSection?.description as string) || defaults.contact.description,
         links: contactLinks?.length ? contactLinks : defaults.contact.links,
       },
     };
