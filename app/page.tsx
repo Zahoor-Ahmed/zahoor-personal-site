@@ -5,6 +5,7 @@ import { FeaturedProjects } from "@/app/components/home/featured-projects";
 import { Footer } from "@/app/components/home/footer";
 import { HeroSection } from "@/app/components/home/hero-section";
 import { Navbar } from "@/app/components/home/navbar";
+import { ScrollRevealController } from "@/app/components/home/scroll-reveal-controller";
 import { homeSectionGap } from "@/app/components/home/section-layout";
 import { getHomeContent } from "@/app/lib/get-home-content";
 
@@ -13,6 +14,7 @@ export default async function Home() {
 
   return (
     <main>
+      <ScrollRevealController />
       <Navbar links={content.navLinks} siteName={content.siteName} />
       <div className={`relative overflow-x-clip flex flex-col ${homeSectionGap}`}>
         <HeroSection content={content} />

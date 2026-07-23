@@ -127,7 +127,7 @@ body {
 }
 
 @utility animate-fade-up-soft {
-  animation: fade-up-soft 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-up-soft 1200ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @utility animate-glow-float {
@@ -148,6 +148,57 @@ body {
 
 @utility animation-delay-400 {
   animation-delay: 400ms;
+}
+
+[data-scroll-reveal] {
+  --reveal-delay: 0ms;
+  --reveal-x: 0px;
+  --reveal-y: 24px;
+}
+
+[data-scroll-reveal="left"] {
+  --reveal-x: -44px;
+  --reveal-y: 0px;
+}
+
+[data-scroll-reveal="right"] {
+  --reveal-x: 44px;
+  --reveal-y: 0px;
+}
+
+[data-scroll-reveal][data-reveal-ready]:not([data-revealed]) {
+  opacity: 0;
+  transform: translate3d(var(--reveal-x), var(--reveal-y), 0) scale(0.985);
+}
+
+[data-scroll-reveal][data-reveal-ready] {
+  transition:
+    opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay),
+    transform 1400ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+[data-scroll-reveal][data-revealed] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+@media (max-width: 640px) {
+  [data-scroll-reveal="left"] {
+    --reveal-x: -28px;
+  }
+
+  [data-scroll-reveal="right"] {
+    --reveal-x: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 a,

@@ -280,8 +280,8 @@ export function CtaSection({ contact }: CtaSectionProps) {
         </p>
       ) : null}
 
-      <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-400`}>
-        <div className="section-card overflow-hidden rounded-[1.75rem] px-7 pb-9 shadow-[var(--section-card-shadow)] sm:px-9 sm:pb-10">
+      <div className={`mx-auto ${homeSectionMaxWidth}`}>
+        <div className="section-card overflow-hidden rounded-[1.75rem] px-7 pb-9 shadow-[var(--section-card-shadow)] sm:px-9 sm:pb-10" data-scroll-reveal="up">
           <div className="-mx-7 rounded-t-[1.7rem] border-b border-[#4f7da8] bg-[linear-gradient(135deg,#173b62_0%,#245b8d_100%)] px-7 py-8 text-white sm:-mx-9 sm:px-9 sm:py-9">
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#8bd1ff] sm:text-[0.95rem]">
               {contact.eyebrow}
@@ -295,10 +295,12 @@ export function CtaSection({ contact }: CtaSectionProps) {
           </div>
 
           <div className="mt-7 grid gap-5 md:grid-cols-3">
-            {contactOptions.map((option) => (
+            {contactOptions.map((option, index) => (
               <article
                 key={option.title}
                 className={`flex min-h-[290px] flex-col rounded-[1.35rem] border border-[rgba(74,136,196,0.46)] p-6 shadow-[0_14px_30px_rgba(66,102,143,0.11)] ${option.cardClassName}`}
+                data-scroll-reveal="left"
+                data-reveal-delay={index * 110}
               >
                 <div
                   className={`flex h-14 w-14 items-center justify-center rounded-full border ${option.iconClassName}`}

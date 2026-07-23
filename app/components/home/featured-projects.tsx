@@ -43,21 +43,25 @@ export async function FeaturedProjects({ intro }: FeaturedProjectsProps) {
 
   return (
     <section id="products" className={homeSectionPaddingX}>
-      <div className={`mx-auto ${homeSectionMaxWidth} space-y-6 animate-fade-up-soft animation-delay-300`}>
-        <SectionHeading
-          eyebrow={intro.eyebrow}
-          eyebrowSizeClassName="text-[0.95rem] sm:text-base"
-          eyebrowClassName="font-bold tracking-[0.28em] text-sky-600"
-          title={intro.title}
-          description={intro.description}
-          descriptionClassName={`max-w-2xl ${sectionIntroText}`}
-        />
+      <div className={`mx-auto ${homeSectionMaxWidth} space-y-6`}>
+        <div data-scroll-reveal="up">
+          <SectionHeading
+            eyebrow={intro.eyebrow}
+            eyebrowSizeClassName="text-[0.95rem] sm:text-base"
+            eyebrowClassName="font-bold tracking-[0.28em] text-sky-600"
+            title={intro.title}
+            description={intro.description}
+            descriptionClassName={`max-w-2xl ${sectionIntroText}`}
+          />
+        </div>
 
         <div className="grid gap-4 lg:grid-cols-3">
           {projects.map((project, index) => (
             <article
               key={project.title}
               className={`flex h-full flex-col rounded-[1.5rem] ${sectionCardSurface} ${sectionCardShadow}`}
+              data-scroll-reveal="left"
+              data-reveal-delay={index * 120}
             >
               <div className="p-4 pb-0">
                 <ProjectVisual type={project.visual} title={project.title} />

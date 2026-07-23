@@ -36,8 +36,8 @@ export function AboutSection({ about }: AboutSectionProps) {
 
   return (
     <section id="about" className={homeSectionPaddingX}>
-      <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-200`}>
-        <div className={`grid gap-8 rounded-[1.75rem] px-7 py-9 ${sectionCardSurface} ${sectionCardShadow} sm:px-9 sm:py-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-x-10 lg:gap-y-6`}>
+      <div className={`mx-auto ${homeSectionMaxWidth}`}>
+        <div className={`grid gap-8 rounded-[1.75rem] px-7 py-9 ${sectionCardSurface} ${sectionCardShadow} sm:px-9 sm:py-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-x-10 lg:gap-y-6`} data-scroll-reveal="up">
           <AboutIntro
             eyebrow={about.eyebrow}
             title={about.title}
@@ -47,8 +47,8 @@ export function AboutSection({ about }: AboutSectionProps) {
           />
 
           <div className="grid gap-5 sm:grid-cols-3 lg:mt-14">
-            {journeyCards.map((card) => (
-              <article key={card.title} className="flex min-h-[320px] flex-col rounded-[1.35rem] border border-[#cbd9e9] bg-white/10 px-6 pb-8 pt-6 shadow-[0_12px_32px_rgba(66,102,143,0.06)]">
+            {journeyCards.map((card, index) => (
+              <article key={card.title} className="flex min-h-[320px] flex-col rounded-[1.35rem] border border-[#cbd9e9] bg-white/10 px-6 pb-8 pt-6 shadow-[0_12px_32px_rgba(66,102,143,0.06)]" data-scroll-reveal="right" data-reveal-delay={index * 110}>
                 <div className="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-[#e5eef9] text-[#258cf1]">
                   <span className="block h-11 w-11 [&_svg]:h-full [&_svg]:w-full [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[1.8] [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]">
                     <JourneyIcon icon={card.icon} />

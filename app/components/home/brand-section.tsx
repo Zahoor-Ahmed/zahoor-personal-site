@@ -34,8 +34,11 @@ function ArrowRightIcon() {
 export function BrandSection({ whatIBuild }: BrandSectionProps) {
   return (
     <section id="services" className={`relative z-10 ${homeSectionPaddingX}`}>
-      <div className={`mx-auto ${homeSectionMaxWidth} animate-fade-up-soft animation-delay-100`}>
-        <div className={`services-shell ${sectionCardSurface} ${sectionCardShadow}`}>
+      <div className={`mx-auto ${homeSectionMaxWidth}`}>
+        <div
+          className={`services-shell ${sectionCardSurface} ${sectionCardShadow}`}
+          data-scroll-reveal="up"
+        >
           <span className="services-shell-arcs" aria-hidden="true">
             <span />
             <span />
@@ -55,6 +58,8 @@ export function BrandSection({ whatIBuild }: BrandSectionProps) {
               <article
                 key={area.title}
                 className={`services-card ${sectionCardInnerSurface}`}
+                data-scroll-reveal="right"
+                data-reveal-delay={index * 120}
               >
                 <CardArcDecoration />
 
